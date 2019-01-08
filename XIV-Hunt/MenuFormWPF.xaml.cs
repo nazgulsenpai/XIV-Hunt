@@ -307,9 +307,10 @@ namespace FFXIV_GameSense
                 if (coords.Length > 1 && float.TryParse(coords[0], out float xR) && float.TryParse(coords[1], out float yR))
                 {
                     ushort zid = Program.mem.GetZoneId();
-                    float x = Entity.GetCoordFromReadable(xR, zid);
-                    float y = Entity.GetCoordFromReadable(yR, zid);
-                    var cm = ChatMessage.MakePosChatMessage(string.Empty, zid, x, y);
+                    ushort mid = Program.mem.GetMapId();
+                    float x = Entity.GetCoordFromReadable(xR, zid, mid);
+                    float y = Entity.GetCoordFromReadable(yR, zid, mid);
+                    var cm = ChatMessage.MakePosChatMessage(string.Empty, zid, x, y, string.Empty, mid);
                     _ = mem.WriteChatMessage(cm);
                 }
             }

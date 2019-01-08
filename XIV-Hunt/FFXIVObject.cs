@@ -75,21 +75,18 @@ namespace FFXIV_GameSense
             return "( " + GetXReadable(zoneId).ToString("0.0").Replace(',', '.') + " , " + GetYReadable(zoneId).ToString("0.0").Replace(',', '.') + " )";
         }
 
-        internal float GetXReadable(ushort zoneId) => GetXReadable(PosX, zoneId);
+        internal float GetXReadable(ushort zoneId, ushort mapId = 0) => GetXReadable(PosX, zoneId, mapId);
 
-        internal static float GetXReadable(float PosX, ushort zoneId) => GetCoordReadable(PosX, zoneId);
+        internal static float GetXReadable(float PosX, ushort zoneId, ushort mapId = 0) => GetCoordReadable(PosX, zoneId, mapId);
 
-        internal float GetYReadable(ushort zoneId) => GetYReadable(PosY, zoneId);
+        internal float GetYReadable(ushort zoneId, ushort mapId = 0) => GetYReadable(PosY, zoneId, mapId);
 
-        internal static float GetYReadable(float PosY, ushort zoneId) => GetCoordReadable(PosY, zoneId);
+        internal static float GetYReadable(float PosY, ushort zoneId, ushort mapId = 0) => GetCoordReadable(PosY, zoneId, mapId);
 
-        private static float GetCoordReadable(float c, ushort zid)
+        private static float GetCoordReadable(float c, ushort zoneId, ushort mapId = 0)
         {
-            //Looks like the game accounts for this already
-            //ushort zf = XIVDBfunc.GetSizeFactor(zid);
-            //c *= (float)Math.Round(100 / (float)zf, 2);
             c *= 0.02f;
-            switch (GameResources.GetSizeFactor(zid))
+            switch (GameResources.GetSizeFactor(zoneId, mapId))
             {
                 case 95:
                     return c + 22.5f;
@@ -109,9 +106,9 @@ namespace FFXIV_GameSense
             }
         }
 
-        internal static float GetCoordFromReadable(float r, ushort zid)
+        internal static float GetCoordFromReadable(float r, ushort zoneId, ushort mapId = 0)
         {
-            switch (GameResources.GetSizeFactor(zid))
+            switch (GameResources.GetSizeFactor(zoneId, mapId))
             {
                 case 95:
                     r -= 22.5f;
@@ -275,41 +272,42 @@ namespace FFXIV_GameSense
     public enum JobEnum : byte
     {
         ADV,
-        GLA, // 1
-        PGL, // 2
-        MRD, // 3
-        LNC, // 4
-        ARC, // 5
-        CNJ, // 6
-        THM, // 7
-        CRP, // 8
-        BSM, // 9
-        ARM, // 10
-        GSM, // 11
-        LTW, // 12
-        WVR, // 13
-        ALC, // 14
-        CUL, // 15
-        MIN, // 15
-        BTN, // 17
-        FSH, // 18
-        PLD, // 19
-        MNK, // 20
-        WAR, // 21
-        DRG, // 22
-        BRD, // 23
-        WHM, // 24
-        BLM, // 25
-        ACN, // 26
-        SMN, // 27
-        SCH, // 28
-        ROG, // 29
-        NIN, // 30
-        MCH, // 31
-        DRK, // 32
-        AST, // 33
-        SAM, // 34
-        RDM  // 35
+        GLA,
+        PGL,
+        MRD,
+        LNC,
+        ARC,
+        CNJ,
+        THM,
+        CRP,
+        BSM,
+        ARM,
+        GSM,
+        LTW,
+        WVR,
+        ALC,
+        CUL,
+        MIN,
+        BTN,
+        FSH,
+        PLD,
+        MNK,
+        WAR,
+        DRG,
+        BRD,
+        WHM,
+        BLM,
+        ACN,
+        SMN,
+        SCH,
+        ROG,
+        NIN,
+        MCH,
+        DRK,
+        AST,
+        SAM,
+        RDM,
+        BLU
     }
 
     public class Status

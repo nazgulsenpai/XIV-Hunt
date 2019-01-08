@@ -39,7 +39,7 @@ namespace FFXIV_GameSense
             { 0x8, typeof(Mount) },
             { 0x9, typeof(Minion) },
             { 0xA, typeof(Retainer) },
-            { 0xB, typeof(Area) },//don't know what else this includes
+            { 0xB, typeof(Area) },
             { 0xC, typeof(Housing) },
             { 0xD, typeof(Cutscene) },
             { 0xE, typeof(CardStand) },
@@ -51,6 +51,8 @@ namespace FFXIV_GameSense
         private const string targetSignature64 = "5fc3483935********75**483935";
         private const string zoneIdSignature32 = "a802752f8b4f04560fb735";
         private const string zoneIdSignature64 = "e8********f30f108d********4c8d85********0fb705";
+        private const string mapIdSignature32 = "8841**84c074**8b45**890d";
+        private const string mapIdSignature64 = "74**488b42**488905********48890d";
         private const string serverTimeSignature32 = "c20400558bec83ec0c53568b35";
         private const string serverTimeSignature64 = "4833c448898424d0040000488be9c644243000488b0d";
         private const string chatLogStartSignature32 = "83c8**ff75**50ff35********e8********8b0d";
@@ -71,8 +73,8 @@ namespace FFXIV_GameSense
         private const int lastFailedCommandOffset64 = 0x1D2;
         private const int currentContentFinderConditionOffset32 = 0x8;
         private const int currentContentFinderConditionOffset64 = 0xC;
-        private static readonly int[] serverTimeOffset32 = { 0x14C0, 0x4, 0x69C };
-        private static readonly int[] serverTimeOffset64 = { 0x1710, 0x8, 0x844 };
+        private static readonly int[] serverTimeOffset32 = { 0x14C8, 0x4, 0x69C };
+        private static readonly int[] serverTimeOffset64 = { 0x1718, 0x8, 0x844 };
         private static readonly int[] chatLogStartOffset32 = { 0x18, 0x2BC, 0x0 };
         private static readonly int[] chatLogStartOffset64 = { 0x30, 0x3D8, 0x0 };
         private static readonly int[] chatLogTailOffset32 = { 0x18, 0x2C0 };
@@ -81,6 +83,8 @@ namespace FFXIV_GameSense
         private static readonly int[] serverIdOffset64 = { 0x28, 0x288 };
         private static readonly int[] fateListOffset32 = { 0x13A8, 0x0 };
         private static readonly int[] fateListOffset64 = { 0x16F8, 0x0 };
+        private static readonly int[] mapIdOffset32 = { 0x4910, 0x4144};
+        private static readonly int[] mapIdOffset64 = { 0x72C8, 0x4D54 };
         private readonly FFXIVClientMode _mode;
         private GameRegion region;
         private CombatantOffsets combatantOffsets;
@@ -90,6 +94,7 @@ namespace FFXIV_GameSense
         private IntPtr targetAddress = IntPtr.Zero;
         private IntPtr fateListAddress = IntPtr.Zero;
         private IntPtr zoneIdAddress = IntPtr.Zero;
+        private IntPtr mapIdAddress = IntPtr.Zero;
         private IntPtr serverTimeAddress = IntPtr.Zero;
         private IntPtr chatLogStartAddress = IntPtr.Zero;
         private IntPtr chatLogTailAddress = IntPtr.Zero;
@@ -233,10 +238,12 @@ namespace FFXIV_GameSense
             string lastFailedCommandSignature = !Is64Bit ? lastFailedCommandSignature32 : lastFailedCommandSignature64;
             string currentContentFinderConditionSignature = !Is64Bit ? currentContentFinderConditionSignature32 : currentContentFinderConditionSignature64;
             string zoneIdSignature = !Is64Bit ? zoneIdSignature32 : zoneIdSignature64;
+            string mapIdSignature = !Is64Bit ? mapIdSignature32 : mapIdSignature64;
             int[] serverTimeOffset = !Is64Bit ? serverTimeOffset32 : serverTimeOffset64;
             int[] chatLogStartOffset = !Is64Bit ? chatLogStartOffset32 : chatLogStartOffset64;
             int[] chatLogTailOffset = !Is64Bit ? chatLogTailOffset32 : chatLogTailOffset64;
             int[] worldIdOffset = !Is64Bit ? serverIdOffset32 : serverIdOffset64;
+            int[] mapIdOffset = !Is64Bit ? mapIdOffset32 : mapIdOffset64;
             int contentFinderConditionOffset = !Is64Bit ? contentFinderConditionOffset32 : contentFinderConditionOffset64;
             int currentContentFinderConditionOffset = !Is64Bit ? currentContentFinderConditionOffset32 : currentContentFinderConditionOffset64;
             int lastFailedCommandOffset = !Is64Bit ? lastFailedCommandOffset32 : lastFailedCommandOffset64;
@@ -271,8 +278,10 @@ namespace FFXIV_GameSense
             LogHost.Default.Info(region.ToString() + $" (DX{(Is64Bit ? "11" : "9")}) game detected.");
             if(region != GameRegion.Global)
             {
-                if(!Is64Bit)
+                serverTimeOffset[0] -= 0x8;
+                if (!Is64Bit)
                 {
+                    mapIdOffset[0] = 0x452C;
                     lastFailedCommandOffset += 0x4;
                     contentFinderConditionOffset += 0x4;
                     serverTimeOffset[2] = 0x644;
@@ -281,6 +290,7 @@ namespace FFXIV_GameSense
                 }
                 else
                 {
+                    mapIdOffset[0] = 0x6C48;
                     lastFailedCommandOffset -= 0x8;
                     serverTimeOffset[2] = 0x7D4;
                 }
@@ -326,6 +336,17 @@ namespace FFXIV_GameSense
             if (zoneIdAddress == IntPtr.Zero)
             {
                 fail.Add(nameof(zoneIdAddress));
+            }
+
+            // MAPID
+            list = SigScan(mapIdSignature, 0, bRIP);
+            if (list.Count == 1)
+            {
+                mapIdAddress = ResolvePointerPath(list[0], mapIdOffset);
+            }
+            if (mapIdAddress == IntPtr.Zero)
+            {
+                fail.Add(nameof(mapIdAddress));
             }
 
             // SERVERTIME
@@ -427,6 +448,7 @@ namespace FFXIV_GameSense
             Debug.WriteLine(nameof(charmapAddress) + ": 0x{0:X}", charmapAddress.ToInt64());
             Debug.WriteLine(nameof(targetAddress) + ": 0x{0:X}", targetAddress.ToInt64());
             Debug.WriteLine(nameof(zoneIdAddress) + ": 0x{0:X}", zoneIdAddress.ToInt64());
+            Debug.WriteLine(nameof(mapIdAddress) + ": 0x{0:X}", mapIdAddress.ToInt64());
             Debug.WriteLine(nameof(chatLogStartAddress) + ": 0x{0:X}", chatLogStartAddress.ToInt64());
             Debug.WriteLine(nameof(chatLogTailAddress) + ": 0x{0:X}", chatLogTailAddress.ToInt64());
             Debug.WriteLine(nameof(fateListAddress) + ": 0x{0:X}", fateListAddress.ToInt64());
@@ -459,7 +481,7 @@ namespace FFXIV_GameSense
 
         private string GetLastFailedCommand() => GetStringFromBytes(GetByteArray(lastFailedCommandAddress, 70), 0, 70);
 
-        internal ushort GetCurrentContentFinderCondition() => BitConverter.ToUInt16(GetByteArray(currentContentFinderConditionAddress, 2), 0);
+        internal ushort GetCurrentContentFinderCondition() => GetUInt16(currentContentFinderConditionAddress);
 
         internal ContentFinder GetContentFinder()
         {
@@ -657,7 +679,7 @@ namespace FFXIV_GameSense
             return true;
         }
 
-        internal ushort GetWorldId() => BitConverter.ToUInt16(GetByteArray(worldIdAddress, 2), 0);
+        internal ushort GetWorldId() => GetUInt16(worldIdAddress);
 
         //public Combatant GetAnchorCombatant()
         //{
@@ -1054,7 +1076,9 @@ namespace FFXIV_GameSense
             return list;
         }
 
-        public ushort GetZoneId() => GetUInt16(zoneIdAddress, 0);
+        public ushort GetZoneId() => GetUInt16(zoneIdAddress);
+
+        public ushort GetMapId() => GetUInt16(mapIdAddress);
     }
 
     internal class ContentFinderOffsets
@@ -1132,8 +1156,8 @@ namespace FFXIV_GameSense
             }
             else
             {
-                BNpcNameID = Is64Bit ? 0x1728 : 0x13E0;
-                offset = Is64Bit ? 0x1748 : 0x1400;
+                BNpcNameID = Is64Bit ? 0x1730 : 0x13E0;
+                offset = Is64Bit ? 0x1750 : 0x1400;
                 Job = offset + 0x40;
                 Level = offset + 0x42;
             }
@@ -1146,7 +1170,10 @@ namespace FFXIV_GameSense
             MaxGP = offset + 0x1C;
             CurrentCP = offset + 0x1E;
             MaxCP = offset + 0x20;
-            StatusEffectsStart = Is64Bit ? offset + 0xC0 : offset + 0xA4;
+            if (region == GameRegion.Chinese || region == GameRegion.Korean)
+                StatusEffectsStart = Is64Bit ? offset + 0xC0 : offset + 0xA4;
+            else
+                StatusEffectsStart = Is64Bit ? offset + 0xC8 : offset + 0xA4;
         }
     }
 

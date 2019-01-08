@@ -11,7 +11,6 @@ namespace XIVDB
 {
     public class FATEInfo
     {
-        internal const string HtmlTagsRegex = "<.*?>";
         public ushort ID { get; private set; }
         public byte ClassJobLevel { get; private set; }
         public string Name { get; private set; }
@@ -24,7 +23,7 @@ namespace XIVDB
             ID = ushort.Parse(csv["#"]);
             NameWithTags = csv[nameof(Name)].Trim('"', ' ');
             ClassJobLevel = byte.Parse(csv[nameof(ClassJobLevel)]);
-            Name = Regex.Replace(NameWithTags, HtmlTagsRegex, string.Empty);
+            Name = Regex.Replace(NameWithTags, GameResources.HtmlTagRegex, string.Empty);
             IconMap = csv["Icon{Map}"].Trim('"').Replace(".tex", ".png");
             if (csv.HasColum(nameof(EurekaFate)))
                 EurekaFate = csv[nameof(EurekaFate)].Trim('"') == "1";
@@ -42,13 +41,14 @@ namespace XIVDB
             IEnumerable<KeyValuePair<string, int>> fatecols = csv.Columns.Where(x => x.Key.StartsWith("Fate"));
             FATEs = new List<FATEInfo>(fatecols.Count());
             foreach (KeyValuePair<string, int> col in fatecols)
-                FATEs.Add(GameResources.GetFATEInfo(GameResources.GetFateId(Regex.Replace(csv[col.Key].Trim('"'), FATEInfo.HtmlTagsRegex, string.Empty), true)));
+                FATEs.Add(GameResources.GetFATEInfo(GameResources.GetFateId(Regex.Replace(csv[col.Key].Trim('"'), GameResources.HtmlTagRegex, string.Empty), true)));
         }
     }
 
     static class GameResources
     {
         private const string SquareBrauquetsRegex = @"\[(.*?)\]";
+        internal const string HtmlTagRegex = "<.*?>";
         private static readonly string[] lineEnding = new string[] { Environment.NewLine };
         private static readonly Dictionary<ushort, FATEInfo> Fate = IndexFates();
         private static Dictionary<ushort, ushort> CachedSizeFactors = new Dictionary<ushort, ushort>();
@@ -231,30 +231,21 @@ namespace XIVDB
             return 0;
         }
 
-        public static ushort GetSizeFactor(ushort zoneId)
+        public static ushort GetSizeFactor(ushort zoneId, ushort mapId = 0)
         {
-            if (CachedSizeFactors.ContainsKey(zoneId))
-                return CachedSizeFactors[zoneId];
-            string[] lines = Resources.Map.Split(lineEnding, StringSplitOptions.RemoveEmptyEntries);
-            string name = GetMapCodeName(zoneId);
-            int i = 0;
-            while (i < lines.Length)
+            if (mapId == 0)
+                mapId = GetMapIds(zoneId).Min();
+            if (CachedSizeFactors.ContainsKey(mapId))
+                return CachedSizeFactors[mapId];
+            if (ushort.TryParse(Resources.Map.Split(lineEnding, StringSplitOptions.RemoveEmptyEntries).Skip(3).ElementAt(mapId).Split(',')[7], out ushort x))
             {
-                if (string.Concat(lines[i].Split(',')[6].Skip(1).TakeWhile(c => c != '/')) == name && ushort.TryParse(lines[i].Split(',')[7], out ushort x))
-                {
-                    CachedSizeFactors.Add(zoneId, x);
-                    return x;
-                }
-                i++;
+                CachedSizeFactors.Add(mapId, x);
+                return x;
             }
             return 0;
         }
 
-        internal static ushort MapIdToZoneId(uint mapId)
-        {
-            string codename = string.Concat(Resources.Map.Split(lineEnding, StringSplitOptions.RemoveEmptyEntries).Skip(3).ToArray()[mapId].Split(',')[6].Trim('"').TakeWhile(c=>c!='/'));
-            return GetZoneIdFromCodeName(codename);
-        }
+        internal static ushort MapIdToZoneId(uint mapId) => GetZoneIdFromCodeName(string.Concat(Resources.Map.Split(lineEnding, StringSplitOptions.RemoveEmptyEntries).Skip(3).ToArray()[mapId].Split(',')[6].Trim('"').TakeWhile(c => c != '/')));
 
         /// <summary>
         /// Returns the byte[] used, by the game, to identify which zone/subzone to open in the map
@@ -264,17 +255,13 @@ namespace XIVDB
         internal static byte[] GetMapMarkerZoneId(ushort zoneId, ushort subMapId = 0/*, string SubMapName=""*/)
         {
             List<byte> bl = BitConverter.GetBytes(zoneId).Reverse().ToList();
-            Dictionary<ushort, string> Maps = GetMapIds(zoneId);
-            if (subMapId != 0 && Maps.ContainsKey(subMapId))
+            List<ushort> mapIds = GetMapIds(zoneId);
+            if (subMapId != 0 && mapIds.Contains(subMapId))
             {
                 bl.AddRange(BitConverter.GetBytes(subMapId).Reverse().ToList());
             }
-            //else if (!string.IsNullOrWhiteSpace(SubMapName) && Maps.ContainsValue(SubMapName))
-            //{
-            //    bl.AddRange(BitConverter.GetBytes(Maps.FirstOrDefault(x => x.Value.Equals(SubMapName)).Key).Reverse().ToList());
-            //}
             else
-                bl.AddRange(BitConverter.GetBytes(Maps.Keys.Min()).Reverse().ToList());
+                bl.AddRange(BitConverter.GetBytes(mapIds.Min()).Reverse().ToList());
             bl.RemoveAll(x => x == 0x00);
             switch (bl.Count)
             {
@@ -285,9 +272,9 @@ namespace XIVDB
             return bl.ToArray();
         }
 
-        private static Dictionary<ushort, string> GetMapIds(ushort zoneId)
+        private static List<ushort> GetMapIds(ushort zoneId)
         {
-            Dictionary<ushort, string> d = new Dictionary<ushort, string>();
+            List<ushort> d = new List<ushort>();
             string[] lines = Resources.Map.Split(lineEnding, StringSplitOptions.RemoveEmptyEntries);
             string name = GetMapCodeName(zoneId);
             int i = 0;
@@ -296,7 +283,7 @@ namespace XIVDB
                 string[] line = lines[i].Split(',');
                 if (string.Concat(line[6].Skip(1).TakeWhile(c => c != '/')) == name && ushort.TryParse(line[0], out ushort x))
                 {
-                    d.Add(x, line[12].Trim('"'));
+                    d.Add(x);
                 }
                 i++;
             }

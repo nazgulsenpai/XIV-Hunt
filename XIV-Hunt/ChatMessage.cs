@@ -180,7 +180,7 @@ namespace FFXIV_GameSense
                 postpend = split.Last();
             }
 
-            cm.Message = Encoding.UTF8.GetBytes(prepend).Concat(pos).Concat(color).Concat(arrow).Concat(Encoding.UTF8.GetBytes(GameResources.GetZoneName(zoneId) + " ( " + Entity.GetXReadable(x, zoneId).ToString("0.0").Replace(',', '.') + "  , " + Entity.GetYReadable(y, zoneId).ToString("0.0").Replace(',', '.') + " )")).Concat(end).ToArray();
+            cm.Message = Encoding.UTF8.GetBytes(prepend).Concat(pos).Concat(color).Concat(arrow).Concat(Encoding.UTF8.GetBytes(GameResources.GetZoneName(zoneId) + " ( " + Entity.GetXReadable(x, zoneId, mapId).ToString("0.0").Replace(',', '.') + "  , " + Entity.GetYReadable(y, zoneId, mapId).ToString("0.0").Replace(',', '.') + " )")).Concat(end).ToArray();
             if (!string.IsNullOrEmpty(postpend))
                 cm.Message = cm.Message.Concat(Encoding.UTF8.GetBytes(postpend)).ToArray();
 
