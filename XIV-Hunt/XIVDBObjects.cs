@@ -37,9 +37,6 @@ namespace XIVDB
     public class AppData
     {
         public Fate Fate { get; set; }
-        //public int Hp { get; set; }
-        //public int Level { get; set; }
-        //public int Mp { get; set; }
     }
 
     public class Fate

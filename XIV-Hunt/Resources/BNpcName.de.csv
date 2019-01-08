@@ -5916,7 +5916,7 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
 5912,"entschlossen[a] Namazuo",3,"entschlossen[a] Namazuo",1,0,1,0,0
 5913,"Deserteur",4,"Deserteure",2,0,1,0,0
 5914,"gereizt[a] Tatsunoko",3,"gereizt[a] Tatsunoko",1,0,1,0,0
-5915,"verdächtig[a] Mann",2,"verdächtig[a] Männer",2,0,1,0,0
+5915,"verdächtig[a] Kerl",4,"verdächtig[a] Kerle",2,0,1,0,0
 5916,"vergiftet[a] Pirat",6,"vergiftet[a] Piraten",1,0,1,0,0
 5917,"Rudel-Gedan",4,"Rudel-Gedane",2,0,1,0,0
 5918,"Tonosama-Yumemi",3,"Tonosama-Yumemi",1,0,1,0,0
@@ -6264,7 +6264,7 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
 6260,"Rückendecker[p] der XII. Legion",4,"Rückendecker[p] der XII. Legion",2,0,1,0,0
 6261,"Schlitzer[p] der XII. Legion",4,"Schlitzer[p] der XII. Legion",2,0,1,0,0
 6262,"Colossus[p] der XII. Legion",3,"Colossi[p] der XII. Legion",1,0,1,0,0
-6263,"Magna Rotula",3,"Magnae Rotulae",1,0,1,1,0
+6263,"Magna Rotula",3,"Magnae Rotulae",1,0,0,1,1
 6264,"Optio[p] der XII. Legion",4,"Optiones[p] der XII. Legion",1,0,1,0,0
 6265,"Triarius[p] der XII. Legion",3,"Triarii[p] der XII. Legion",1,0,1,0,0
 6266,"Kleingeschütz[p] XLIII",2,"Kleingeschütze[p] XLIII",2,0,1,2,0
@@ -7658,14 +7658,14 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
 7654,"blühend[a] Biloko",3,"blühend[a] Bilokos",1,0,1,0,0
 7655,"Arboretum-Bifericeras",3,"Arboretum-Bifericeras",1,0,1,0,0
 7656,"Arboretum-Schnecke",3,"Arboretum-Schnecken",1,0,1,1,0
-7657,"",0,"",0,0,0,0,0
+7657,"Cherub Ultima",3,"Cherub Ultima",1,0,0,0,1
 7658,"makellos[a] Apa",3,"makellos[a] Apas",1,0,1,1,0
 7659,"Nullchu",3,"Nullchus",1,0,1,2,0
 7660,"Lakhamu",3,"NONE",1,0,0,0,1
 7661,"Schlickgolem",4,"Schlickgolems",1,0,1,0,0
 7662,"Tokkapchi",3,"NONE",1,0,0,0,1
 7663,"schlammig[a] Schleim",4,"schlammig[a] Schleime",2,0,1,0,0
-7664,"",0,"",0,0,0,0,0
+7664,"Dominion",3,"Dominion",1,0,1,1,0
 7665,"dreckig[a] Dorpokkur",3,"dreckig[a] Dorpokkurs",1,0,1,0,0
 7666,"Omega",3,"NONE",1,0,0,0,1
 7667,"Hedetet",3,"NONE",1,0,0,1,1
@@ -7856,40 +7856,40 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
 7852,"Ziel[p] des Blitzstrahls",4,"Ziele[p] des Blitzstrahls",2,0,1,2,0
 7853,"verstärkt[a] Raketenschlag",4,"verstärkt[a] Raketenschläge",2,0,1,0,0
 7854,"Altar-Mandragora",3,"Altar-Mandragoras",1,0,1,1,0
-7855,"",0,"",0,0,0,0,0
-7856,"",0,"",0,0,0,0,0
-7857,"",0,"",0,0,0,0,0
-7858,"",0,"",0,0,0,0,0
-7859,"",0,"",0,0,0,0,0
-7860,"",0,"",0,0,0,0,0
-7861,"",0,"",0,0,0,0,0
-7862,"",0,"",0,0,0,0,0
+7855,"Magitek-Stahlriese",8,"Magitek-Stahlriesen",1,0,1,0,0
+7856,"Prometheus",3,"NONE",1,0,0,0,1
+7857,"Julia quo Soranus",3,"NONE",1,0,0,1,1
+7858,"Annia quo Soranus",3,"NONE",1,0,0,1,1
+7859,"Julia quo Soranus",3,"NONE",1,0,0,1,1
+7860,"Annia quo Soranus",3,"NONE",1,0,0,1,1
+7861,"tödlich[a] Schwesternpaar[p] Julia und Annia",3,"tödlich[a] Schwesternpaar[p] Julia und Annia",1,0,1,2,0
+7862,"Erdseim-Tank",4,"Erdseim-Tanks",1,0,1,0,0
 7863,"",0,"",0,0,0,0,0
 7864,"",0,"",0,0,0,0,0
-7865,"",0,"",0,0,0,0,0
-7866,"",0,"",0,0,0,0,0
-7867,"",0,"",0,0,0,0,0
-7868,"",0,"",0,0,0,0,0
-7869,"",0,"",0,0,0,0,0
-7870,"",0,"",0,0,0,0,0
-7871,"",0,"",0,0,0,0,0
-7872,"",0,"",0,0,0,0,0
-7873,"",0,"",0,0,0,0,0
-7874,"",0,"",0,0,0,0,0
-7875,"",0,"",0,0,0,0,0
-7876,"",0,"",0,0,0,0,0
-7877,"",0,"",0,0,0,0,0
-7878,"",0,"",0,0,0,0,0
-7879,"",0,"",0,0,0,0,0
-7880,"",0,"",0,0,0,0,0
-7881,"",0,"",0,0,0,0,0
-7882,"",0,"",0,0,0,0,0
-7883,"",0,"",0,0,0,0,0
-7884,"",0,"",0,0,0,0,0
-7885,"",0,"",0,0,0,0,0
-7886,"",0,"",0,0,0,0,0
-7887,"",0,"",0,0,0,0,0
-7888,"",0,"",0,0,0,0,0
+7865,"Hien",3,"NONE",1,0,0,0,1
+7866,"Yugiri",3,"NONE",1,0,0,1,1
+7867,"Lyse",3,"NONE",1,0,0,1,1
+7868,"Pipin",3,"NONE",1,0,0,0,1
+7869,"Aymeric",3,"NONE",1,0,0,0,1
+7870,"Kan-E-Senna",3,"NONE",1,0,0,1,1
+7871,"Schola-Centurio",4,"Schola-Centurionen",1,0,1,0,0
+7872,"Schola-Laquearius",3,"Schola-Laquearii",1,0,1,0,0
+7873,"Schola-Secutor",4,"Schola-Secutoren",1,0,1,0,0
+7874,"Schola-Eques",3,"Schola-Equites",1,0,1,0,0
+7875,"Schola-Signifer",4,"Schola-Signiferi",1,0,1,0,0
+7876,"Schola-Himmelspanzer",4,"Schola-Himmelspanzer",2,0,1,0,0
+7877,"Schola-Kanonenschiff",4,"Schola-Kanonenschiffe",2,0,1,2,0
+7878,"Schola-Canis",3,"Schola-Canis",1,0,1,0,0
+7879,"Schola-Prädator",4,"Schola-Prädatoren",1,0,1,0,0
+7880,"Schola-Rächer",4,"Schola-Rächer",2,0,1,0,0
+7881,"Schola-Hexadrohne",3,"Schola-Hexadrohnen",1,0,1,1,0
+7882,"Schola-Rückendecker",4,"Schola-Rückendecker",2,0,1,0,0
+7883,"Schola-Drohne",3,"Schola-Drohnen",1,0,1,1,0
+7884,"Schola-Panzerwaffe",3,"Schola-Panzerwaffen",1,0,1,1,0
+7885,"Schola-Skorpion",4,"Schola-Skorpione",2,0,1,0,0
+7886,"Schola-Colossus",3,"Schola-Colossi",1,0,1,0,0
+7887,"Schola-Colossus Rubricatus",3,"Schola-Colossi Rubricati",1,0,1,0,0
+7888,"verbessert[a] Schola-Colossus",3,"verbessert[a] Schola-Colossi",1,0,1,0,0
 7889,"",0,"",0,0,0,0,0
 7890,"",0,"",0,0,0,0,0
 7891,"",0,"",0,0,0,0,0
@@ -7900,62 +7900,62 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
 7896,"",0,"",0,0,0,0,0
 7897,"",0,"",0,0,0,0,0
 7898,"",0,"",0,0,0,0,0
-7899,"",0,"",0,0,0,0,0
-7900,"",0,"",0,0,0,0,0
-7901,"",0,"",0,0,0,0,0
-7902,"",0,"",0,0,0,0,0
-7903,"",0,"",0,0,0,0,0
-7904,"",0,"",0,0,0,0,0
-7905,"",0,"",0,0,0,0,0
+7899,"Cidolfus",3,"NONE",1,0,0,0,1
+7900,"vergänglich[a] Ritter",4,"vergänglich[a] Ritter",2,0,1,0,0
+7901,"Eiswolf",4,"Eiswölfe",2,0,1,0,0
+7902,"fleischfressend[a] Hornisse",3,"fleischfressend[a] Hornissen",1,0,1,1,0
+7903,"monströs[a] Mull",4,"monströs[a] Mulle",2,0,1,0,0
+7904,"ausrangiert[a] Frontbrecher[p] F-1",4,"ausrangiert[a] Frontbrecher[p] F-1",2,0,1,0,0
+7905,"mysteriös[a] Gestalt",3,"mysteriös[a] Gestalten",1,0,1,1,0
 7906,"",0,"",0,0,0,0,0
-7907,"",0,"",0,0,0,0,0
-7908,"",0,"",0,0,0,0,0
-7909,"",0,"",0,0,0,0,0
-7910,"",0,"",0,0,0,0,0
-7911,"",0,"",0,0,0,0,0
-7912,"",0,"",0,0,0,0,0
-7913,"",0,"",0,0,0,0,0
-7914,"",0,"",0,0,0,0,0
-7915,"",0,"",0,0,0,0,0
-7916,"",0,"",0,0,0,0,0
-7917,"",0,"",0,0,0,0,0
-7918,"",0,"",0,0,0,0,0
-7919,"",0,"",0,0,0,0,0
-7920,"",0,"",0,0,0,0,0
-7921,"",0,"",0,0,0,0,0
-7922,"",0,"",0,0,0,0,0
-7923,"",0,"",0,0,0,0,0
-7924,"",0,"",0,0,0,0,0
-7925,"",0,"",0,0,0,0,0
-7926,"",0,"",0,0,0,0,0
-7927,"",0,"",0,0,0,0,0
-7928,"",0,"",0,0,0,0,0
-7929,"",0,"",0,0,0,0,0
-7930,"",0,"",0,0,0,0,0
-7931,"",0,"",0,0,0,0,0
-7932,"",0,"",0,0,0,0,0
-7933,"",0,"",0,0,0,0,0
-7934,"",0,"",0,0,0,0,0
-7935,"",0,"",0,0,0,0,0
-7936,"",0,"",0,0,0,0,0
-7937,"",0,"",0,0,0,0,0
-7938,"",0,"",0,0,0,0,0
+7907,"Schneesturm-Gaukler",4,"Schneesturm-Gaukler",2,0,1,0,0
+7908,"Zeichen[p] des gefallenen Engels",4,"Zeichen[p] des gefallenen Engels",1,0,1,2,0
+7909,"Cherub Ultima",3,"NONE",1,0,0,1,1
+7910,"Auracitenscherbe",3,"Auracitenscherben",1,0,1,1,0
+7911,"Demi-Hashmallim",3,"NONE",1,0,0,0,1
+7912,"Demi-Famfrit",3,"NONE",1,0,0,0,1
+7913,"Aspersorium",4,"Aspersorien",1,0,1,2,0
+7914,"Demi-Belias",3,"NONE",1,0,0,0,1
+7915,"Mustadio",3,"NONE",1,0,0,0,1
+7916,"Agrias",3,"NONE",1,0,0,1,1
+7917,"Cidolfus",3,"NONE",1,0,0,0,1
+7918,"Ramza",3,"NONE",1,0,0,0,1
+7919,"Mustadio",3,"NONE",1,0,0,0,1
+7920,"alt[a] Gefechtsturm",4,"alt[a] Gefechtstürme",2,0,1,0,0
+7921,"Eisenkonstrukt",4,"Eisenkonstrukte",2,0,1,2,0
+7922,"Seiryu",3,"NONE",1,0,0,0,1
+7923,"Aka no Shiki",3,"Aka no Shiki",1,0,1,2,0
+7924,"Ao no Shiki",3,"Ao no Shiki",1,0,1,2,0
+7925,"Iwa no Shiki",3,"Iwa no Shiki",1,0,1,2,0
+7926,"Ten no Shiki",3,"Ten no Shiki",1,0,1,2,0
+7927,"Numa no Shiki",3,"Numa no Shiki",1,0,1,2,0
+7928,"Doro no Shiki",3,"Doro no Shiki",1,0,1,2,0
+7929,"Yama no Shiki",3,"Yama no Shiki",1,0,1,2,0
+7930,"blau[a] Orochi",3,"blau[a] Orochi",1,0,1,2,0
+7931,"Agrias",3,"NONE",1,0,0,1,1
+7932,"vergänglich[a] Ritter",4,"vergänglich[a] Ritter",2,0,1,0,0
+7933,"makellos[a] Seele",3,"makellos[a] Seelen",1,0,1,1,0
+7934,"verdorben[a] Seele",3,"verdorben[a] Seelen",1,0,1,1,0
+7935,"Schwertritter",4,"Schwertritter",2,0,1,0,0
+7936,"Schildritter",4,"Schildritter",2,0,1,0,0
+7937,"geschmückt[a] Schild",4,"geschmückt[a] Schilde",2,0,1,0,0
+7938,"Flamme[p] der Verderbnis",3,"Flammen[p] der Verderbnis",1,0,1,1,0
 7939,"",0,"",0,0,0,0,0
-7940,"",0,"",0,0,0,0,0
-7941,"",0,"",0,0,0,0,0
+7940,"Dai Ame-no-Habakiri",3,"Dai Ame-no-Habakiri",1,0,1,1,0
+7941,"Shinobi[p] der Östlichen Allianz",3,"Shinobi[p] der Östlichen Allianz",1,0,1,0,0
 7942,"",0,"",0,0,0,0,0
-7943,"",0,"",0,0,0,0,0
+7943,"降神餅",0,"",0,0,1,0,0
 7944,"",0,"",0,0,0,0,0
 7945,"",0,"",0,0,0,0,0
-7946,"",0,"",0,0,0,0,0
-7947,"",0,"",0,0,0,0,0
-7948,"",0,"",0,0,0,0,0
-7949,"",0,"",0,0,0,0,0
-7950,"",0,"",0,0,0,0,0
-7951,"",0,"",0,0,0,0,0
-7952,"",0,"",0,0,0,0,0
-7953,"",0,"",0,0,0,0,0
-7954,"",0,"",0,0,0,0,0
+7946,"Harpyie",3,"Harpyien",1,0,1,1,0
+7947,"Klostergeist",4,"Klostergeister",2,0,1,0,0
+7948,"Klosterskelett",4,"Klosterskelette",2,0,1,2,0
+7949,"Nachtwandler",4,"Nachtwandler",2,0,1,0,0
+7950,"Düsterritter",4,"Düsterritter",2,0,1,0,0
+7951,"Parthenope[p] der Verderbnis",3,"Parthenopen[p] der Verderbnis",1,0,1,1,0
+7952,"Gespenst[p] der Verderbnis",2,"Gespenster[p] der Verderbnis",2,0,1,2,0
+7953,"Dämon[p] der Verderbnis",4,"Dämonen[p] der Verderbnis",1,0,1,0,0
+7954,"Fran",3,"NONE",1,0,0,1,1
 7955,"",0,"",0,0,0,0,0
 7956,"",0,"",0,0,0,0,0
 7957,"",0,"",0,0,0,0,0
@@ -8077,71 +8077,71 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
 8073,"",0,"",0,0,0,0,0
 8074,"",0,"",0,0,0,0,0
 8075,"",0,"",0,0,0,0,0
-8076,"",0,"",0,0,0,0,0
-8077,"",0,"",0,0,0,0,0
-8078,"",0,"",0,0,0,0,0
-8079,"",0,"",0,0,0,0,0
-8080,"",0,"",0,0,0,0,0
-8081,"",0,"",0,0,0,0,0
-8082,"",0,"",0,0,0,0,0
-8083,"",0,"",0,0,0,0,0
-8084,"",0,"",0,0,0,0,0
-8085,"",0,"",0,0,0,0,0
-8086,"",0,"",0,0,0,0,0
-8087,"",0,"",0,0,0,0,0
-8088,"",0,"",0,0,0,0,0
-8089,"",0,"",0,0,0,0,0
-8090,"",0,"",0,0,0,0,0
-8091,"",0,"",0,0,0,0,0
-8092,"",0,"",0,0,0,0,0
-8093,"",0,"",0,0,0,0,0
-8094,"",0,"",0,0,0,0,0
-8095,"",0,"",0,0,0,0,0
-8096,"",0,"",0,0,0,0,0
-8097,"",0,"",0,0,0,0,0
-8098,"",0,"",0,0,0,0,0
-8099,"",0,"",0,0,0,0,0
-8100,"",0,"",0,0,0,0,0
-8101,"",0,"",0,0,0,0,0
-8102,"",0,"",0,0,0,0,0
-8103,"",0,"",0,0,0,0,0
-8104,"",0,"",0,0,0,0,0
-8105,"",0,"",0,0,0,0,0
-8106,"",0,"",0,0,0,0,0
-8107,"",0,"",0,0,0,0,0
-8108,"",0,"",0,0,0,0,0
-8109,"",0,"",0,0,0,0,0
-8110,"",0,"",0,0,0,0,0
-8111,"",0,"",0,0,0,0,0
-8112,"",0,"",0,0,0,0,0
-8113,"",0,"",0,0,0,0,0
-8114,"",0,"",0,0,0,0,0
-8115,"",0,"",0,0,0,0,0
-8116,"",0,"",0,0,0,0,0
-8117,"",0,"",0,0,0,0,0
-8118,"",0,"",0,0,0,0,0
-8119,"",0,"",0,0,0,0,0
-8120,"",0,"",0,0,0,0,0
-8121,"",0,"",0,0,0,0,0
-8122,"",0,"",0,0,0,0,0
-8123,"",0,"",0,0,0,0,0
-8124,"",0,"",0,0,0,0,0
-8125,"",0,"",0,0,0,0,0
-8126,"",0,"",0,0,0,0,0
-8127,"",0,"",0,0,0,0,0
-8128,"",0,"",0,0,0,0,0
-8129,"",0,"",0,0,0,0,0
-8130,"",0,"",0,0,0,0,0
+8076,"Arena-Schleim",4,"Arena-Schleime",2,0,1,0,0
+8077,"Arena-Dullahan",4,"Arena-Dullahans",1,0,1,0,0
+8078,"Arena-Pudding",4,"Arena-Puddings",1,0,1,0,0
+8079,"Arena-Gelato",4,"Arena-Gelati",1,0,1,2,0
+8080,"Arena-Marshmallow",4,"Arena-Marshmallows",1,0,1,2,0
+8081,"Arena-Lakritze",3,"Arena-Lakritzen",1,0,1,1,0
+8082,"Arena-Creme",3,"Arena-Cremes",1,0,1,1,0
+8083,"Arena-Kuchen",4,"Arena-Kuchen",1,0,1,0,0
+8084,"Zipacna",3,"NONE",1,0,0,0,1
+8085,"Arena-Fledermaus",3,"Arena-Fledermäuse",2,0,1,1,0
+8086,"Arena-Wolf",4,"Arena-Wölfe",2,0,1,0,0
+8087,"Kreios",3,"NONE",1,0,0,0,1
+8088,"Arena-Käfer",4,"Arena-Käfer",2,0,1,0,0
+8089,"brüderlich[a] Gilkröte",3,"brüderlich[a] Gilkröten",1,0,1,1,0
+8090,"Arena-Catblepus",3,"Arena-Catblepus",1,0,1,1,0
+8091,"Arena-Mandragora",3,"Arena-Mandragoras",1,0,1,1,0
+8092,"Arena-Auge",4,"Arena-Augen",1,0,1,2,0
+8093,"Eis-Exergon",4,"Eis-Exergone",2,0,1,2,0
+8094,"Lava-Schleim",4,"Lava-Schleime",2,0,1,0,0
+8095,"kämpferisch[a] System",4,"kämpferisch[a] Systeme",2,0,1,2,0
+8096,"Arena-Bomber",4,"Arena-Bomber",2,0,1,0,0
+8097,"Arena-Snoll",4,"Arena-Snolle",2,0,1,0,0
+8098,"Arena-Progenitrix",3,"Arena-Progenitrices",1,0,1,1,0
+8099,"Guimauve",3,"NONE",1,0,0,0,1
+8100,"Crom Dubh",3,"NONE",1,0,0,0,1
+8101,"Arena-Gasbomber",4,"Arena-Gasbomber",2,0,1,0,0
+8102,"Hydnora",3,"NONE",1,0,0,0,1
+8103,"Arena-Rösling",4,"Arena-Röslinge",2,0,1,0,0
+8104,"Arena-Haagenti",3,"Arena-Haagentis",1,0,1,0,0
+8105,"Arena-Vodoriga",3,"Arena-Vodorigas",1,0,1,1,0
+8106,"Arena-Sukkubus",3,"Arena-Sukkuben",1,0,1,0,0
+8107,"Carmilla",3,"NONE",1,0,0,1,1
+8108,"Arena-Marmelade",3,"Arena-Marmeladen",1,0,1,1,0
+8109,"bestialisch[a] System",4,"bestialisch[a] Systeme",2,0,1,2,0
+8110,"Arena-Shabti",4,"Arena-Shabtis",1,0,1,0,0
+8111,"Arena-Schlange",3,"Arena-Schlangen",1,0,1,1,0
+8112,"Arena-Zyklop",6,"Arena-Zyklopen",1,0,1,0,0
+8113,"Tikbalang",3,"NONE",1,0,0,0,1
+8114,"recht[a] Klaue",3,"recht[a] Klauen",1,0,1,1,0
+8115,"link[a] Klaue",3,"link[a] Klauen",1,0,1,1,0
+8116,"Arena-Manticore",3,"Arena-Manticoren",1,0,1,1,0
+8117,"Rebekkah Rotzeranke",3,"Rebekkah Rotzeranke",1,0,0,1,1
+8118,"Rebekkahs Samen",3,"Rebekkahs Samen",1,0,0,1,1
+8119,"elegant[a] Tentakel",4,"elegant[a] Tentakel",2,0,1,2,0
+8120,"Arena-Imp",4,"Arena-Imps",1,0,1,0,0
+8121,"Apademak",3,"NONE",1,0,0,0,1
+8122,"Arena-Granate",3,"Arena-Granaten",1,0,1,1,0
+8123,"Urgroßbomber",4,"Urgroßbomber",2,0,1,0,0
+8124,"Kronprinz-Behemoth",4,"Kronprinz-Behemoths",1,0,1,0,0
+8125,"Epilogi",3,"NONE",1,0,0,0,1
+8126,"Arena-Wikinger",4,"Arena-Wikinger",2,0,1,0,0
+8127,"Arena-Magier",4,"Arena-Magier",2,0,1,0,0
+8128,"Arena-Scholar",4,"Arena-Scholaren",1,0,1,0,0
+8129,"Azulmagia",3,"NONE",1,0,0,0,1
+8130,"glühend[a] Ango",3,"glühend[a] Angos",1,0,1,0,0
 8131,"",0,"",0,0,0,0,0
-8132,"",0,"",0,0,0,0,0
-8133,"",0,"",0,0,0,0,0
-8134,"",0,"",0,0,0,0,0
-8135,"",0,"",0,0,0,0,0
-8136,"",0,"",0,0,0,0,0
-8137,"",0,"",0,0,0,0,0
-8138,"",0,"",0,0,0,0,0
-8139,"",0,"",0,0,0,0,0
-8140,"",0,"",0,0,0,0,0
+8132,"Mahlstrom",3,"NONE",1,0,0,0,1
+8133,"Falsch[a] Heiligtum",4,"Falsch[a] Heiligtümer",2,0,1,2,0
+8134,"Killer-Vespula",3,"Killer-Vespulas",1,0,1,1,0
+8135,"Rutschbomber",4,"Rutschbomber",2,0,1,0,0
+8136,"Kicherkröte",3,"Kicherkröten",1,0,1,1,0
+8137,"Sabotender-Tänzer",4,"Sabotender-Tänzer",2,0,1,0,0
+8138,"Frontbrecher[p] H-2",4,"Frontbrecher[p] H-2",2,0,1,0,0
+8139,"aufrecht[a] Olm",4,"aufrecht[a] Olme",2,0,1,0,0
+8140,"Arena-Knallomat",6,"Arena-Knallomaten",1,0,1,0,0
 8141,"",0,"",0,0,0,0,0
 8142,"",0,"",0,0,0,0,0
 8143,"",0,"",0,0,0,0,0
