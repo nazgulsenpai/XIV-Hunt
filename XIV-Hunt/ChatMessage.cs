@@ -51,7 +51,7 @@ namespace FFXIV_GameSense
             { 4, new byte[] { 0xB3, 0x8C, 0xFF } },
             { 7, new byte[] { 0xFA, 0x89, 0xB6 } }
         };
-        
+
         /// <summary>
         /// Default constructor. Sets timestamp to now and channel to Echo;
         /// </summary>
@@ -67,7 +67,7 @@ namespace FFXIV_GameSense
         /// First 4 bytes should be unix timestamp.
         /// 5th byte should be ChatChannel.
         /// 6th byte should be ChatFilter(unknown).
-        /// 9th byte should be 0x3A, followed by sender name (UTF-8), followed by 0x3A.
+        /// 9th byte should be 0x3A, followed by sender name, followed by 0x3A.
         /// The rest is the message, including payloads.
         /// </summary>
         /// <param name="arr">Byte array should be longer than 10</param>
@@ -79,10 +79,9 @@ namespace FFXIV_GameSense
             }
             Timestamp = UnixTimeStampToDateTime(BitConverter.ToUInt32(arr.Take(4).ToArray(), 0));
             Channel = (ChatChannel)arr[4];
-            Filter = (ChatFilter)arr[5];//hmm
-            Sender = new Sender(arr.Skip(9).Take(Array.FindIndex(arr.Skip(9).ToArray(), x => x == 0x3A)).ToArray()/*, wid*/);
-            int pos = arr.Skip(9).ToList().IndexOf(0x3A) + 10;
-            Message = arr.Skip(pos).ToArray();
+            Filter = (ChatFilter)arr[5];
+            Sender = new Sender(arr.Skip(9), out int msgStart/*, wid*/);
+            Message = arr.Skip(9 + msgStart).ToArray();
         }
 
         private static DateTime UnixTimeStampToDateTime(uint unixTimeStamp) => new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(unixTimeStamp);
@@ -125,7 +124,7 @@ namespace FFXIV_GameSense
                 end = HQChar.Concat(end).ToArray();
                 Item.Name += " ";
             }
-            byte[] idba = BitConverter.GetBytes(HQ ? Item.ID + 1000000 : Item.ID).Reverse().SkipWhile(x=>x==0x00).ToArray();
+            byte[] idba = BitConverter.GetBytes(HQ ? Item.ID + 1000000 : Item.ID).Reverse().SkipWhile(x => x == 0x00).ToArray();
             if (Item.ID <= byte.MaxValue)//Currencies
             {
                 ItemHeader1And2 = ItemHeader1And2.Take(ItemHeader1And2.Count() - 1).ToArray();
@@ -228,20 +227,24 @@ namespace FFXIV_GameSense
         [JsonIgnore]
         private static readonly byte[] LinkStartTemplate = new byte[] { 0x02, 0x27, 0x00, 0x01, 0x1F, 0x01, 0x01, 0xFF, 0x0B, 0x00 };
 
-        public Sender(byte[] senderpart/*, ushort wid*/)
+        public Sender(IEnumerable<byte> arr, out int msgStart/*, ushort wid*/)
         {
-            if (senderpart.IndexOf(LinkStart) == 0)
+            if (arr.IndexOf(LinkStart) == 0)
             {
                 //first occurence is full name, second is display-as (full name / surabbr / forabbr / initials)
-                Name = Encoding.UTF8.GetString(senderpart.Skip(9).Take(senderpart[8] - 1).ToArray());
-                int nameend = senderpart.IndexOf(LinkEnd) + LinkEnd.Length;
+                Name = Encoding.UTF8.GetString(arr.Skip(9).Take(arr.ElementAt(8) - 1).ToArray());
+                //int nameend = senderpart.IndexOf(LinkEnd) + LinkEnd.Length;
                 //if (nameend != senderpart.Length)
                 //    WorldID = GameResources.GetWorldID(Encoding.UTF8.GetString(senderpart.Skip(nameend + WorldSign.Length).ToArray()));
                 //else
                 //    WorldID = wid;
+                msgStart = arr.Skip(9).TakeWhile(x => x != 0x3A).Count() + 10;
             }
             else
-                Name = Encoding.UTF8.GetString(senderpart);
+            {
+                Name = Encoding.UTF8.GetString(arr.TakeWhile(x => x != 0x3A).ToArray());
+                msgStart = arr.TakeWhile(x => x != 0x3A).Count() + 1;
+            }
         }
 
         internal byte[] ToArray(bool link = true, bool world = true)
