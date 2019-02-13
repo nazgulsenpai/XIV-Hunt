@@ -3,6 +3,7 @@ using FFXIV_GameSense.UI;
 using Splat;
 using Squirrel;
 using System;
+using System.ComponentModel;
 using System.Configuration;
 using System.IO;
 using System.Linq;
@@ -159,5 +160,10 @@ namespace FFXIV_GameSense
         public Logger(LogView lv) => LogView = lv;
 
         public void Write(string message, LogLevel level) => LogView.AddLogLine(message.Remove(0, nameof(LogHost).Length), level);
+
+        public void Write([Localizable(false)] string message, [Localizable(false)] Type type, LogLevel logLevel)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
