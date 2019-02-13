@@ -7890,10 +7890,10 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
 7886,"colosse scholae",0,"colosses scholae",0,0,1,0,0
 7887,"colosse rubricatus scholae",0,"colosses rubricati scholae",0,0,1,0,0
 7888,"colosse II scholae",0,"colosses II scholae",0,0,1,0,0
-7889,"",0,"",0,0,0,0,0
-7890,"",0,"",0,0,0,0,0
-7891,"",0,"",0,0,0,0,0
-7892,"",0,"",0,0,0,0,0
+7889,"automate tank des Faucons",0,"automates tanks des Faucons",0,1,1,0,0
+7890,"automate tank des Corbeaux",0,"automates tanks des Corbeaux",0,1,1,0,0
+7891,"automate mercenaire des Faucons",0,"automates mercenaires des Faucons",0,1,1,0,0
+7892,"automate mercenaire des Corbeaux",0,"automates mercenaires des Corbeaux",0,1,1,0,0
 7893,"",0,"",0,0,0,0,0
 7894,"",0,"",0,0,0,0,0
 7895,"",0,"",0,0,0,0,0
@@ -7907,7 +7907,7 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
 7903,"musaraigne monstrueuse",0,"musaraignes monstrueuses",0,0,1,1,0
 7904,"avant-garde d'assaut modifiée",0,"avant-gardes d'assaut modifiées",0,1,1,1,0
 7905,"individu mystérieux",0,"individus mystérieux",0,1,1,0,0
-7906,"",0,"",0,0,0,0,0
+7906,"mercenaire gobelin",0,"mercenaires gobelins",0,0,1,0,0
 7907,"bateleur des blizzards",0,"bateleurs des blizzards",0,0,1,0,0
 7908,"marque des déchus",0,"marques des déchus",0,0,1,1,0
 7909,"Ultima la Grande Séraphine",0,"Ultima la Grande Séraphine",0,1,1,1,1
@@ -7940,7 +7940,7 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
 7936,"chevalier au bouclier",0,"chevaliers au bouclier",0,0,1,0,0
 7937,"pavois miroitant",0,"pavois miroitants",0,0,1,0,0
 7938,"flamme de la destruction",0,"flammes de la destruction",0,0,1,1,0
-7939,"",0,"",0,0,0,0,0
+7939,"locomotive à céruleum",0,"locomotives à céruleum",0,0,1,1,0
 7940,"Dai Ame no Habakiri",0,"Dai Ame no Habakiri",0,0,1,1,1
 7941,"shinobi de la coalition orientale",0,"shinobi de la coalition orientale",0,0,1,0,0
 7942,"",0,"",0,0,0,0,0
@@ -7956,127 +7956,127 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
 7952,"gespenst des ruines",0,"gespensts des ruines",0,0,1,0,0
 7953,"démon des ruines",0,"démons des ruines",0,0,1,0,0
 7954,"Fran",0,"Fran",0,0,1,1,1
-7955,"",0,"",0,0,0,0,0
-7956,"",0,"",0,0,0,0,0
-7957,"",0,"",0,0,0,0,0
-7958,"",0,"",0,0,0,0,0
-7959,"",0,"",0,0,0,0,0
-7960,"",0,"",0,0,0,0,0
-7961,"",0,"",0,0,0,0,0
-7962,"",0,"",0,0,0,0,0
-7963,"",0,"",0,0,0,0,0
-7964,"",0,"",0,0,0,0,0
-7965,"",0,"",0,0,0,0,0
-7966,"",0,"",0,0,0,0,0
-7967,"",0,"",0,0,0,0,0
-7968,"",0,"",0,0,0,0,0
-7969,"",0,"",0,0,0,0,0
-7970,"",0,"",0,0,0,0,0
-7971,"",0,"",0,0,0,0,0
-7972,"",0,"",0,0,0,0,0
-7973,"",0,"",0,0,0,0,0
-7974,"",0,"",0,0,0,0,0
-7975,"",0,"",0,0,0,0,0
-7976,"",0,"",0,0,0,0,0
-7977,"",0,"",0,0,0,0,0
-7978,"",0,"",0,0,0,0,0
-7979,"",0,"",0,0,0,0,0
-7980,"",0,"",0,0,0,0,0
-7981,"",0,"",0,0,0,0,0
-7982,"",0,"",0,0,0,0,0
-7983,"",0,"",0,0,0,0,0
-7984,"",0,"",0,0,0,0,0
-7985,"",0,"",0,0,0,0,0
-7986,"",0,"",0,0,0,0,0
-7987,"",0,"",0,0,0,0,0
-7988,"",0,"",0,0,0,0,0
-7989,"",0,"",0,0,0,0,0
-7990,"",0,"",0,0,0,0,0
-7991,"",0,"",0,0,0,0,0
-7992,"",0,"",0,0,0,0,0
-7993,"",0,"",0,0,0,0,0
-7994,"",0,"",0,0,0,0,0
-7995,"",0,"",0,0,0,0,0
-7996,"",0,"",0,0,0,0,0
-7997,"",0,"",0,0,0,0,0
-7998,"",0,"",0,0,0,0,0
-7999,"",0,"",0,0,0,0,0
-8000,"",0,"",0,0,0,0,0
-8001,"",0,"",0,0,0,0,0
-8002,"",0,"",0,0,0,0,0
-8003,"",0,"",0,0,0,0,0
-8004,"",0,"",0,0,0,0,0
-8005,"",0,"",0,0,0,0,0
-8006,"",0,"",0,0,0,0,0
-8007,"",0,"",0,0,0,0,0
-8008,"",0,"",0,0,0,0,0
-8009,"",0,"",0,0,0,0,0
-8010,"",0,"",0,0,0,0,0
-8011,"",0,"",0,0,0,0,0
-8012,"",0,"",0,0,0,0,0
-8013,"",0,"",0,0,0,0,0
-8014,"",0,"",0,0,0,0,0
-8015,"",0,"",0,0,0,0,0
-8016,"",0,"",0,0,0,0,0
-8017,"",0,"",0,0,0,0,0
-8018,"",0,"",0,0,0,0,0
-8019,"",0,"",0,0,0,0,0
-8020,"",0,"",0,0,0,0,0
-8021,"",0,"",0,0,0,0,0
-8022,"",0,"",0,0,0,0,0
-8023,"",0,"",0,0,0,0,0
-8024,"",0,"",0,0,0,0,0
-8025,"",0,"",0,0,0,0,0
-8026,"",0,"",0,0,0,0,0
-8027,"",0,"",0,0,0,0,0
-8028,"",0,"",0,0,0,0,0
-8029,"",0,"",0,0,0,0,0
-8030,"",0,"",0,0,0,0,0
-8031,"",0,"",0,0,0,0,0
-8032,"",0,"",0,0,0,0,0
-8033,"",0,"",0,0,0,0,0
-8034,"",0,"",0,0,0,0,0
-8035,"",0,"",0,0,0,0,0
-8036,"",0,"",0,0,0,0,0
-8037,"",0,"",0,0,0,0,0
-8038,"",0,"",0,0,0,0,0
-8039,"",0,"",0,0,0,0,0
-8040,"",0,"",0,0,0,0,0
-8041,"",0,"",0,0,0,0,0
-8042,"",0,"",0,0,0,0,0
-8043,"",0,"",0,0,0,0,0
-8044,"",0,"",0,0,0,0,0
-8045,"",0,"",0,0,0,0,0
-8046,"",0,"",0,0,0,0,0
-8047,"",0,"",0,0,0,0,0
-8048,"",0,"",0,0,0,0,0
-8049,"",0,"",0,0,0,0,0
-8050,"",0,"",0,0,0,0,0
-8051,"",0,"",0,0,0,0,0
-8052,"",0,"",0,0,0,0,0
-8053,"",0,"",0,0,0,0,0
-8054,"",0,"",0,0,0,0,0
-8055,"",0,"",0,0,0,0,0
-8056,"",0,"",0,0,0,0,0
-8057,"",0,"",0,0,0,0,0
-8058,"",0,"",0,0,0,0,0
-8059,"",0,"",0,0,0,0,0
-8060,"",0,"",0,0,0,0,0
-8061,"",0,"",0,0,0,0,0
-8062,"",0,"",0,0,0,0,0
-8063,"",0,"",0,0,0,0,0
-8064,"",0,"",0,0,0,0,0
-8065,"",0,"",0,0,0,0,0
-8066,"",0,"",0,0,0,0,0
-8067,"",0,"",0,0,0,0,0
-8068,"",0,"",0,0,0,0,0
-8069,"",0,"",0,0,0,0,0
-8070,"",0,"",0,0,0,0,0
-8071,"",0,"",0,0,0,0,0
-8072,"",0,"",0,0,0,0,0
-8073,"",0,"",0,0,0,0,0
-8074,"",0,"",0,0,0,0,0
-8075,"",0,"",0,0,0,0,0
+7955,"Ceto",0,"Ceto",0,0,1,1,1
+7956,"esclave de Ceto",0,"esclaves de Ceto",0,1,1,0,0
+7957,"garde de Ceto",0,"gardes de Ceto",0,0,1,0,0
+7958,"piège",0,"pièges",0,0,1,0,0
+7959,"brasier de Barong",0,"brasiers de Barong",0,0,1,0,0
+7960,"flamme de Barong",0,"flammes de Barong",0,0,1,1,0
+7961,"fantassin du roi",0,"fantassins du roi",0,0,1,0,0
+7962,"chevalier du roi",0,"chevaliers du roi",0,0,1,0,0
+7963,"bouffon du roi",0,"bouffons du roi",0,0,1,0,0
+7964,"tentacule",0,"tentacules",0,0,1,0,0
+7965,"Barong",0,"Barong",0,0,1,0,1
+7966,"Roi Goldemar",0,"Roi Goldemar",0,0,1,0,0
+7967,"Daphné",0,"Daphné",0,0,1,1,1
+7968,"Art",0,"Art",0,1,1,0,1
+7969,"Orlasrach",0,"Orlasrach",0,1,1,0,1
+7970,"Owain",0,"Owain",0,1,1,0,1
+7971,"Munderg",0,"Munderg",0,0,1,0,1
+7972,"paume d'ivoire",0,"paumes d'ivoire",0,0,1,1,0
+7973,"Raiden",0,"Raiden",0,0,1,0,1
+7974,"orbe de foudre",0,"orbes de foudre",0,1,1,0,0
+7975,"lance de foudre",0,"lances de foudre",0,0,1,1,0
+7976,"Vertu absolue",0,"Vertu absolue",0,0,1,1,1
+7977,"Vertu relative",0,"Vertu relative",0,0,1,1,1
+7978,"wynav d'Aern",0,"wynav d'Aern",0,0,1,0,0
+7979,"aurore radieuse",0,"aurores radieuses",0,1,1,1,0
+7980,"aurore sombre",0,"aurores sombres",0,1,1,1,0
+7981,"Proto-Ozma",0,"Proto-Ozma",0,0,1,0,1
+7982,"ombre de Proto-Ozma",0,"ombres de Proto-Ozma",0,1,1,1,0
+7983,"sphère de Proto-Ozma",0,"sphères de Proto-Ozma",0,0,1,1,0
+7984,"urolithe de l'Arsenal",0,"urolithes de l'Arsenal",0,1,1,0,0
+7985,"viking de l'Arsenal",0,"vikings de l'Arsenal",0,0,1,0,0
+7986,"mage de l'Arsenal",0,"mages de l'Arsenal",0,0,1,0,0
+7987,"scribe de l'Arsenal",0,"scribes de l'Arsenal",0,0,1,0,0
+7988,"Byblos de l'Arsenal",0,"Byblos de l'Arsenal",0,0,1,0,1
+7989,"centaure de l'Arsenal",0,"centaures de l'Arsenal",0,0,1,0,0
+7990,"bibliotaphe de l'Arsenal",0,"bibliotaphes de l'Arsenal",0,0,1,0,0
+7991,"poroggo de l'Arsenal",0,"poroggos de l'Arsenal",0,0,1,0,0
+7992,"Calcabrina de l'Arsenal",0,"Calcabrina de l'Arsenal",0,0,1,1,1
+7993,"logos de l'Arsenal",0,"logos de l'Arsenal",0,0,1,0,0
+7994,"ventilateur de l'Arsenal",0,"ventilateurs de l'Arsenal",0,0,1,0,0
+7995,"Strix de l'Arsenal",0,"Strix de l'Arsenal",0,0,1,0,1
+7996,"tome de l'Arsenal",0,"tomes de l'Arsenal",0,0,1,0,0
+7997,"skate'ne de l'Arsenal",0,"skate'ne de l'Arsenal",0,0,1,0,0
+7998,"Calca de l'Arsenal",0,"Calca de l'Arsenal",0,0,1,1,1
+7999,"Brina de l'Arsenal",0,"Brina de l'Arsenal",0,0,1,1,1
+8000,"vodoriga de l'Arsenal",0,"vodorigas de l'Arsenal",0,0,1,1,0
+8001,"mur de livres de l'Arsenal",0,"murs de livres de l'Arsenal",0,0,1,0,0
+8002,"œil de l'Arsenal",0,"yeux de l'Arsenal",0,1,1,0,0
+8003,"élémentaire de l'Arsenal",0,"élémentaires de l'Arsenal",0,1,1,0,0
+8004,"gespenst de l'Arsenal",0,"gespensts de l'Arsenal",0,0,1,0,0
+8005,"elbst audacieux",0,"elbsts audacieux",0,1,1,0,0
+8006,"haokah errant",0,"haokah errants",0,0,1,0,0
+8007,"chef haokah",0,"chefs haokah",0,0,1,0,0
+8008,"mortalis d'Eurêka",0,"mortalis d'Eurêka",0,0,1,0,0
+8009,"nanka de la Val",0,"nankas de la Val",0,0,1,0,0
+8010,"pampa mariachi",0,"pampas mariachis",0,0,1,0,0
+8011,"limace d'Hydatos",0,"limaces d'Hydatos",0,0,1,1,0
+8012,"pudding d'Hydatos",0,"puddings d'Hydatos",0,0,1,0,0
+8013,"coeurl de laboratoire",0,"coeurls de laboratoire",0,0,1,0,0
+8014,"chigoe de la Val",0,"chigoes de la Val",0,0,1,0,0
+8015,"nix d'Hydatos",0,"nix d'Hydatos",0,0,1,0,0
+8016,"ziz d'Hydatos",0,"ziz d'Hydatos",0,0,1,0,0
+8017,"gaélichat sombre",0,"gaélichats sombres",0,0,1,0,0
+8018,"grenado d'Hydatos",0,"grenados d'Hydatos",0,0,1,0,0
+8019,"vepar d'Hydatos",0,"vepars d'Hydatos",0,0,1,0,0
+8020,"rat de laboratoire",0,"rats de laboratoire",0,0,1,0,0
+8021,"jeune coquelet",0,"jeunes coquelets",0,0,1,0,0
+8022,"elbst d'Hydatos",0,"elbsts d'Hydatos",0,1,1,0,0
+8023,"tsanahale d'Hydatos",0,"tsanahales d'Hydatos",0,0,1,1,0
+8024,"xzomit",0,"xzomit",0,0,1,0,0
+8025,"matanga nomade",0,"matangas nomades",0,0,1,0,0
+8026,"tulihänd de la Val",0,"tulihänds de la Val",0,0,1,0,0
+8027,"antilope de la Val",0,"antilopes de la Val",0,1,1,1,0
+8028,"primelephas d'Hydatos",0,"primelephas d'Hydatos",0,0,1,0,0
+8029,"thalassina lacustre",0,"thalassinas lacustres",0,0,1,1,0
+8030,"éo'ghrah",0,"éo'ghrahs",0,1,1,0,0
+8031,"nullchu de la Val",0,"nullchus de la Val",0,0,1,0,0
+8032,"gastornis pétulant",0,"gastornis pétulants",0,0,1,0,0
+8033,"pantin #013BL",0,"pantins #013BL",0,0,1,0,0
+8034,"cuirassé Dreadnaught rouillé",0,"cuirassés Dreadnaught rouillés",0,0,1,0,0
+8035,"vouivre du néant",0,"vouivres du néant",0,0,1,1,0
+8036,"shugen tengu",0,"shugen tengu",0,0,1,0,0
+8037,"tigre du Nord",0,"tigres du Nord",0,0,1,0,0
+8038,"moine sombre du néant",0,"moines sombres du néant",0,0,1,0,0
+8039,"gorpokkur",0,"gorpokkur",0,0,1,0,0
+8040,"mante de la Val",0,"mantes de la Val",0,0,1,1,0
+8041,"squib d'Hydatos",0,"squibs d'Hydatos",0,0,1,0,0
+8042,"taupe de la Val",0,"taupes de la Val",0,0,1,1,0
+8043,"thor égaré",0,"thors égarés",0,0,1,0,0
+8044,"ogre perdu",0,"ogres perdus",0,1,1,0,0
+8045,"faucon-tigre",0,"faucons-tigres",0,0,1,0,0
+8046,"mylodon d'Hydatos",0,"mylodons d'Hydatos",0,0,1,0,0
+8047,"lion de laboratoire",0,"lions de laboratoire",0,0,1,0,0
+8048,"peiste d'Hydatos",0,"peistes d'Hydatos",0,0,1,0,0
+8049,"chacal de laboratoire",0,"chacals de laboratoire",0,0,1,0,0
+8050,"Delphyné d'Hydatos",0,"Delphyné d'Hydatos",0,0,1,1,1
+8051,"gargouille sombre",0,"gargouilles sombres",0,0,1,1,0
+8052,"zébu d'Hydatos",0,"zébus d'Hydatos",0,0,1,0,0
+8053,"wyverne du néant",0,"wyvernes du néant",0,0,1,1,0
+8054,"griffe de cristal",0,"griffes de cristal",0,0,1,1,0
+8055,"chercheur sans âme",0,"chercheurs sans âme",0,0,1,0,0
+8056,"aventurier sans âme",0,"aventuriers sans âme",0,1,1,0,0
+8057,"cavalier sombre",0,"cavaliers sombres",0,0,1,0,0
+8058,"spectre d'Hydatos",0,"spectres d'Hydatos",0,0,1,0,0
+8059,"cadavre de samouraï",0,"cadavres de samouraïs",0,0,1,0,0
+8060,"Ovni",0,"Ovni",0,1,1,0,1
+8061,"gardien de Provenance",0,"gardiens de Provenance",0,0,1,0,0
+8062,"pilier de glace",0,"piliers de glace",0,0,1,0,0
+8063,"Khalamar",0,"Khalamar",0,0,1,0,0
+8064,"paralarve",0,"paralarves",0,0,1,1,0
+8065,"sphère d'eau",0,"sphères d'eau",0,0,1,1,0
+8066,"Tristitia",0,"Tristitia",0,0,1,1,1
+8067,"Phuabo",0,"Phuabo",0,0,1,0,1
+8068,"Leuke",0,"Leuke",0,0,1,0,1
+8069,"Stegodon",0,"Stegodon",0,0,1,0,1
+8070,"Molech",0,"Molech",0,0,1,0,1
+8071,"fidèle de Molech",0,"fidèles de Molech",0,0,1,0,0
+8072,"Crinière-de-givre",0,"Crinière-de-givre",0,0,1,0,1
+8073,"Piasa",0,"Piasa",0,0,1,0,1
+8074,"plume étrange",0,"plumes étranges",0,0,1,1,0
+8075,"plume funeste",0,"plumes funestes",0,0,1,1,0
 8076,"gluant de l'arène",0,"gluants de l'arène",0,0,1,0,0
 8077,"dullahan de l'arène",0,"dullahans de l'arène",0,0,1,0,0
 8078,"pudding de l'arène",0,"puddings de l'arène",0,0,1,0,0
@@ -8132,7 +8132,7 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
 8128,"scribe de l'arène",0,"scribes de l'arène",0,0,1,0,0
 8129,"Azulmagia",0,"Azulmagia",0,1,1,0,1
 8130,"angon flamboyant",0,"angons flamboyants",0,1,1,0,0
-8131,"",0,"",0,0,0,0,0
+8131,"élémentaire d'Hydatos",0,"élémentaires d'Hydatos",0,1,1,0,0
 8132,"Maelstrom",0,"Maelstrom",0,0,1,0,1
 8133,"faux sanctuaire",0,"faux sanctuaires",0,0,1,0,0
 8134,"frelon tueur",0,"frelons tueurs",0,0,1,0,0

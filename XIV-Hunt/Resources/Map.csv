@@ -489,7 +489,7 @@ int32,byte,byte,sbyte,byte,uint16,str,uint16,int16,int16,PlaceName,PlaceName,Pla
 485,0,0,0,1,0,"z3oc/00",400,-100,-100,"Gyr Abania","Psiscape V1.0","",-1,0,"Psiscape V1.0",True,False
 486,0,0,0,1,0,"z3oe/00",400,-100,-100,"Gyr Abania","The Interdimensional Rift","",-1,0,"The Interdimensional Rift",True,False
 487,0,0,0,1,334,"w1t1/01",200,0,0,"Thanalan","Ul'dah - Steps of Nald","",-1,0,"Ul'dah - Steps of Nald",True,False
-488,0,0,0,1,341,"w1p1/00",100,0,0,"Thanalan","","",-1,0,"",True,False
+488,0,0,0,1,341,"w1p1/00",100,0,0,"Thanalan","Hidden Gorge","",-1,0,"Hidden Gorge",True,False
 489,0,0,0,1,0,"e3ff/00",400,-100,-100,"Hingashi","Kugane Ohashi","",-1,0,"Kugane Ohashi",True,False
 490,0,0,0,1,0,"w1tz/00",400,-100,-100,"Thanalan","Blue Sky","",-1,0,"Blue Sky",True,False
 491,0,0,0,1,0,"n4f1/00",100,0,0,"???","","",-1,0,"",True,False
@@ -516,16 +516,16 @@ int32,byte,byte,sbyte,byte,uint16,str,uint16,int16,int16,PlaceName,PlaceName,Pla
 512,13,4,1,1,351,"z3r3/01",200,-545,-663,"???","The Orbonne Monastery","The Golmore Jungle",101,6,"The Orbonne Monastery",True,False
 513,13,4,2,1,352,"z3r3/02",200,-600,-150,"???","The Orbonne Monastery","The Orbonne Monastery",101,56,"The Orbonne Monastery",True,False
 514,13,4,3,1,353,"z3r3/03",200,645,540,"???","The Orbonne Monastery","The Necrohol",101,192,"The Orbonne Monastery",True,False
-515,0,0,0,1,342,"z3fd/01",100,0,475,"???","","",102,8190,"",True,False
+515,0,0,0,1,342,"z3fd/01",100,0,475,"???","Eureka Hydatos","",102,8190,"Eureka Hydatos",True,False
 516,0,0,0,1,0,"e3fg/00",400,-100,-100,"Othard","The Wreath of Snakes","",-1,0,"The Wreath of Snakes",True,False
 517,0,0,0,1,344,"g3e7/01",400,0,0,"Gyr Abania","Garlean Legion Tents","",-1,0,"Eorzean Alliance Headquarters",True,True
 518,0,0,0,1,343,"g3e7/02",400,480,-130,"Gyr Abania","Eorzean Alliance Headquarters","",-1,0,"Eorzean Alliance Headquarters",True,True
 519,13,4,4,1,354,"z3r3/04",200,-600,600,"???","The Orbonne Monastery","Crystalline Gaol",101,256,"The Orbonne Monastery",True,False
-520,0,0,0,1,345,"z3fd/02",200,0,-754,"???","","",-1,0,"",True,False
-521,0,0,0,1,346,"z3fd/03",200,0,-450,"???","","",-1,0,"",True,False
+520,0,0,0,1,345,"z3fd/02",200,0,-754,"???","Eureka Hydatos","Headquarters Entrance",-1,0,"Eureka Hydatos",True,False
+521,0,0,0,1,346,"z3fd/03",200,0,-450,"???","Eureka Hydatos","The Basement",-1,0,"Eureka Hydatos",True,False
 522,0,0,0,1,0,"z3r3/05",200,-300,50,"???","The Orbonne Monastery","Confessional",-1,0,"The Orbonne Monastery",True,False
 523,0,0,0,1,0,"z3r3/06",200,600,600,"???","The Orbonne Monastery","The Forgotten Arena",-1,0,"The Orbonne Monastery",True,False
-524,0,0,0,1,347,"z3fd/04",200,0,-450,"???","","",-1,0,"",True,False
-525,0,0,0,1,348,"z3fd/05",200,0,-450,"???","","",-1,0,"",True,False
-526,0,0,0,1,349,"z3fd/06",200,0,-450,"???","","",-1,0,"",True,False
-527,0,0,0,1,350,"z3fd/07",200,0,-450,"???","","",-1,0,"",True,False
+524,0,0,0,1,347,"z3fd/04",200,0,-450,"???","Eureka Hydatos","The Belly",-1,0,"Eureka Hydatos",True,False
+525,0,0,0,1,348,"z3fd/05",200,0,-450,"???","Eureka Hydatos","The Umbral Tier",-1,0,"Eureka Hydatos",True,False
+526,0,0,0,1,349,"z3fd/06",200,0,-450,"???","Eureka Hydatos","The Astral Tier",-1,0,"Eureka Hydatos",True,False
+527,0,0,0,1,350,"z3fd/07",200,0,-450,"???","Eureka Hydatos","The Loft",-1,0,"Eureka Hydatos",True,False

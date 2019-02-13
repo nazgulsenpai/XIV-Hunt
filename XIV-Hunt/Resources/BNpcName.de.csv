@@ -469,7 +469,7 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
 465,"Stickflix Grummeltoss",3,"Stickflix Grummeltoss",1,0,0,0,1
 466,"gezähmt[a] Terrormilbe",3,"gezähmt[a] Terrormilben",1,0,1,1,0
 467,"Fachan",3,"Fachan",1,0,0,0,1
-468,"Schwarm-Ziz",3,"Schwarm-Zizes",1,0,1,0,0
+468,"Schwarm-Ziz",3,"Schwarm-Ziz",1,0,1,0,0
 469,"Milchwurzel-Mandragora",3,"Milchwurzel-Mandragoras",1,0,1,1,0
 470,"Briaxio",3,"Briaxio",1,0,0,0,1
 471,"wütend[a] Weibchen",3,"wütend[a] Weibchen",1,0,1,2,0
@@ -3082,7 +3082,7 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
 3078,"Silberschuppen-Aufseher",4,"Silberschuppen-Aufseher",2,0,1,0,0
 3079,"Bronze-Pugil",3,"Bronze-Pugil",1,0,1,0,0
 3080,"Jagd-Pterosaurus",3,"Jagd-Pterosaurier",2,0,1,0,0
-3081,"Schwarm-Ziz",3,"Schwarm-Zizes",1,0,1,0,0
+3081,"Schwarm-Ziz",3,"Schwarm-Ziz",1,0,1,0,0
 3082,"vernünftig[a] Tomberry",3,"vernünftig[a] Tomberrys",1,0,1,0,0
 3083,"Silberschuppen-Schläger",4,"Silberschuppen-Schläger",2,0,1,0,0
 3084,"Kampf-Wivre",3,"Kampf-Wivres",1,0,1,1,0
@@ -6041,9 +6041,9 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
 6037,"Wachskorpion",4,"Wachskorpione",2,0,1,0,0
 6038,"Aulus mal Asina",3,"NONE",1,0,0,0,1
 6039,"Zenos yae Galvus",3,"NONE",1,0,0,0,1
-6040,"Ame no Habakiri",3,"Ame no Habakiri",1,0,1,2,0
-6041,"Spaltend[a] Wind",2,"Spaltend[a] Winde",2,0,1,0,0
-6042,"Schneidend[a] Sturm",4,"Schneidend[a] Stürme",2,0,1,0,0
+6040,"Ame no Habakiri",3,"NONE",1,0,0,2,1
+6041,"Spaltender Wind",3,"NONE",1,0,0,0,1
+6042,"Schneidender Sturm",3,"NONE",1,0,0,0,1
 6043,"verängstigt[a] Bürger",4,"verängstigt[a] Bürger",2,0,1,0,0
 6044,"zitternd[a] Bürgerin",3,"zitternd[a] Bürgerinnen",1,0,1,1,0
 6045,"Kugane-Onibi",3,"Kugane-Onibi",1,0,1,2,0
@@ -7890,10 +7890,10 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
 7886,"Schola-Colossus",3,"Schola-Colossi",1,0,1,0,0
 7887,"Schola-Colossus Rubricatus",3,"Schola-Colossi Rubricati",1,0,1,0,0
 7888,"verbessert[a] Schola-Colossus",3,"verbessert[a] Schola-Colossi",1,0,1,0,0
-7889,"",0,"",0,0,0,0,0
-7890,"",0,"",0,0,0,0,0
-7891,"",0,"",0,0,0,0,0
-7892,"",0,"",0,0,0,0,0
+7889,"Falkenpanzer",4,"Falkenpanzer",2,0,1,0,0
+7890,"Rabenpanzer",4,"Rabenpanzer",2,0,1,0,0
+7891,"Falkensöldner",4,"Falkensöldner",2,0,1,0,0
+7892,"Rabensöldner",4,"Rabensöldner",2,0,1,0,0
 7893,"",0,"",0,0,0,0,0
 7894,"",0,"",0,0,0,0,0
 7895,"",0,"",0,0,0,0,0
@@ -7907,7 +7907,7 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
 7903,"monströs[a] Mull",4,"monströs[a] Mulle",2,0,1,0,0
 7904,"ausrangiert[a] Frontbrecher[p] F-1",4,"ausrangiert[a] Frontbrecher[p] F-1",2,0,1,0,0
 7905,"mysteriös[a] Gestalt",3,"mysteriös[a] Gestalten",1,0,1,1,0
-7906,"",0,"",0,0,0,0,0
+7906,"Goblin-Söldner",4,"Goblin-Söldner",2,0,1,0,0
 7907,"Schneesturm-Gaukler",4,"Schneesturm-Gaukler",2,0,1,0,0
 7908,"Zeichen[p] des gefallenen Engels",4,"Zeichen[p] des gefallenen Engels",1,0,1,2,0
 7909,"Cherub Ultima",3,"NONE",1,0,0,1,1
@@ -7940,7 +7940,7 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
 7936,"Schildritter",4,"Schildritter",2,0,1,0,0
 7937,"geschmückt[a] Schild",4,"geschmückt[a] Schilde",2,0,1,0,0
 7938,"Flamme[p] der Verderbnis",3,"Flammen[p] der Verderbnis",1,0,1,1,0
-7939,"",0,"",0,0,0,0,0
+7939,"Erdseim-Zug",4,"Erdseim-Züge",1,0,1,0,0
 7940,"Dai Ame-no-Habakiri",3,"Dai Ame-no-Habakiri",1,0,1,1,0
 7941,"Shinobi[p] der Östlichen Allianz",3,"Shinobi[p] der Östlichen Allianz",1,0,1,0,0
 7942,"",0,"",0,0,0,0,0
@@ -7956,127 +7956,127 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
 7952,"Gespenst[p] der Verderbnis",2,"Gespenster[p] der Verderbnis",2,0,1,2,0
 7953,"Dämon[p] der Verderbnis",4,"Dämonen[p] der Verderbnis",1,0,1,0,0
 7954,"Fran",3,"NONE",1,0,0,1,1
-7955,"",0,"",0,0,0,0,0
-7956,"",0,"",0,0,0,0,0
-7957,"",0,"",0,0,0,0,0
-7958,"",0,"",0,0,0,0,0
-7959,"",0,"",0,0,0,0,0
-7960,"",0,"",0,0,0,0,0
-7961,"",0,"",0,0,0,0,0
-7962,"",0,"",0,0,0,0,0
-7963,"",0,"",0,0,0,0,0
-7964,"",0,"",0,0,0,0,0
-7965,"",0,"",0,0,0,0,0
-7966,"",0,"",0,0,0,0,0
-7967,"",0,"",0,0,0,0,0
-7968,"",0,"",0,0,0,0,0
-7969,"",0,"",0,0,0,0,0
-7970,"",0,"",0,0,0,0,0
-7971,"",0,"",0,0,0,0,0
-7972,"",0,"",0,0,0,0,0
-7973,"",0,"",0,0,0,0,0
-7974,"",0,"",0,0,0,0,0
-7975,"",0,"",0,0,0,0,0
-7976,"",0,"",0,0,0,0,0
-7977,"",0,"",0,0,0,0,0
-7978,"",0,"",0,0,0,0,0
-7979,"",0,"",0,0,0,0,0
-7980,"",0,"",0,0,0,0,0
-7981,"",0,"",0,0,0,0,0
-7982,"",0,"",0,0,0,0,0
-7983,"",0,"",0,0,0,0,0
-7984,"",0,"",0,0,0,0,0
-7985,"",0,"",0,0,0,0,0
-7986,"",0,"",0,0,0,0,0
-7987,"",0,"",0,0,0,0,0
-7988,"",0,"",0,0,0,0,0
-7989,"",0,"",0,0,0,0,0
-7990,"",0,"",0,0,0,0,0
-7991,"",0,"",0,0,0,0,0
-7992,"",0,"",0,0,0,0,0
-7993,"",0,"",0,0,0,0,0
-7994,"",0,"",0,0,0,0,0
-7995,"",0,"",0,0,0,0,0
-7996,"",0,"",0,0,0,0,0
-7997,"",0,"",0,0,0,0,0
-7998,"",0,"",0,0,0,0,0
-7999,"",0,"",0,0,0,0,0
-8000,"",0,"",0,0,0,0,0
-8001,"",0,"",0,0,0,0,0
-8002,"",0,"",0,0,0,0,0
-8003,"",0,"",0,0,0,0,0
-8004,"",0,"",0,0,0,0,0
-8005,"",0,"",0,0,0,0,0
-8006,"",0,"",0,0,0,0,0
-8007,"",0,"",0,0,0,0,0
-8008,"",0,"",0,0,0,0,0
-8009,"",0,"",0,0,0,0,0
-8010,"",0,"",0,0,0,0,0
-8011,"",0,"",0,0,0,0,0
-8012,"",0,"",0,0,0,0,0
-8013,"",0,"",0,0,0,0,0
-8014,"",0,"",0,0,0,0,0
-8015,"",0,"",0,0,0,0,0
-8016,"",0,"",0,0,0,0,0
-8017,"",0,"",0,0,0,0,0
-8018,"",0,"",0,0,0,0,0
-8019,"",0,"",0,0,0,0,0
-8020,"",0,"",0,0,0,0,0
-8021,"",0,"",0,0,0,0,0
-8022,"",0,"",0,0,0,0,0
-8023,"",0,"",0,0,0,0,0
-8024,"",0,"",0,0,0,0,0
-8025,"",0,"",0,0,0,0,0
-8026,"",0,"",0,0,0,0,0
-8027,"",0,"",0,0,0,0,0
-8028,"",0,"",0,0,0,0,0
-8029,"",0,"",0,0,0,0,0
-8030,"",0,"",0,0,0,0,0
-8031,"",0,"",0,0,0,0,0
-8032,"",0,"",0,0,0,0,0
-8033,"",0,"",0,0,0,0,0
-8034,"",0,"",0,0,0,0,0
-8035,"",0,"",0,0,0,0,0
-8036,"",0,"",0,0,0,0,0
-8037,"",0,"",0,0,0,0,0
-8038,"",0,"",0,0,0,0,0
-8039,"",0,"",0,0,0,0,0
-8040,"",0,"",0,0,0,0,0
-8041,"",0,"",0,0,0,0,0
-8042,"",0,"",0,0,0,0,0
-8043,"",0,"",0,0,0,0,0
-8044,"",0,"",0,0,0,0,0
-8045,"",0,"",0,0,0,0,0
-8046,"",0,"",0,0,0,0,0
-8047,"",0,"",0,0,0,0,0
-8048,"",0,"",0,0,0,0,0
-8049,"",0,"",0,0,0,0,0
-8050,"",0,"",0,0,0,0,0
-8051,"",0,"",0,0,0,0,0
-8052,"",0,"",0,0,0,0,0
-8053,"",0,"",0,0,0,0,0
-8054,"",0,"",0,0,0,0,0
-8055,"",0,"",0,0,0,0,0
-8056,"",0,"",0,0,0,0,0
-8057,"",0,"",0,0,0,0,0
-8058,"",0,"",0,0,0,0,0
-8059,"",0,"",0,0,0,0,0
-8060,"",0,"",0,0,0,0,0
-8061,"",0,"",0,0,0,0,0
-8062,"",0,"",0,0,0,0,0
-8063,"",0,"",0,0,0,0,0
-8064,"",0,"",0,0,0,0,0
-8065,"",0,"",0,0,0,0,0
-8066,"",0,"",0,0,0,0,0
-8067,"",0,"",0,0,0,0,0
-8068,"",0,"",0,0,0,0,0
-8069,"",0,"",0,0,0,0,0
-8070,"",0,"",0,0,0,0,0
-8071,"",0,"",0,0,0,0,0
-8072,"",0,"",0,0,0,0,0
-8073,"",0,"",0,0,0,0,0
-8074,"",0,"",0,0,0,0,0
-8075,"",0,"",0,0,0,0,0
+7955,"Ceto",3,"NONE",1,0,0,1,1
+7956,"leblos[a] Sklave",8,"leblos[a] Sklaven",1,0,1,0,0
+7957,"hoffnungslos[a] Wache",3,"hoffnungslos[a] Wachen",1,0,1,1,0
+7958,"verborgen[a] Falle",3,"verborgen[a] Fallen",1,0,1,1,0
+7959,"Feuer[p]",4,"Feuer[p]",2,0,1,2,0
+7960,"Flamme[p]",3,"Flammen[p]",1,0,1,1,0
+7961,"Pikenier[p] des Königs",4,"Pikeniere[p] des Königs",2,0,1,0,0
+7962,"Ritter[p] des Königs",4,"Ritter[p] des Königs",2,0,1,0,0
+7963,"Narr[p] des Königs",6,"Narren[p] des Königs",1,0,1,0,0
+7964,"Tentakel",4,"Tentakel",2,0,1,2,0
+7965,"Baron Feuermähne",3,"NONE",1,0,0,0,1
+7966,"König Goldemar",3,"NONE",1,0,0,0,1
+7967,"Daphne",3,"NONE",1,0,0,1,1
+7968,"Art",3,"NONE",1,0,0,0,1
+7969,"Orlasrach",3,"NONE",1,0,0,0,1
+7970,"Owain",3,"NONE",1,0,0,0,1
+7971,"Munderg",3,"NONE",1,0,0,0,1
+7972,"weiß[a] Hand",3,"weiß[a] Hände",2,0,1,1,0
+7973,"Raiden",3,"NONE",1,0,0,0,1
+7974,"Elektrosphäre",3,"Elektrosphären",1,0,1,1,0
+7975,"Elektrolanze",3,"Elektrolanzen",1,0,1,1,0
+7976,"Absolut[a] Tugend",3,"Absolut[a] Tugenden",1,0,1,1,0
+7977,"Relativ[a] Tugend",3,"Relativ[a] Tugenden",1,0,1,1,0
+7978,"Aerns Wynav[p]",3,"Aerns Wynavs[p]",1,0,1,1,0
+7979,"strahlend[a] Aurora",3,"strahlend[a] Auroras",1,0,1,1,0
+7980,"finster[a] Aurora",3,"finster[a] Auroras",1,0,1,1,0
+7981,"Proto-Yadis",4,"Proto-Yadis",1,0,1,0,0
+7982,"Proto-Yadis-Schatten",4,"Proto-Yadis-Schatten",1,0,1,0,0
+7983,"Yadis-Sphäre",3,"Yadis-Sphäre",1,0,1,1,0
+7984,"Arsenal-Urolith",6,"Arsenal-Urolithen",1,0,1,0,0
+7985,"Arsenal-Wikinger",4,"Arsenal-Wikinger",2,0,1,0,0
+7986,"Arsenal-Magier",4,"Arsenal-Magier",2,0,1,0,0
+7987,"Arsenal-Scholar",6,"Arsenal-Scholaren",2,0,1,0,0
+7988,"Arsenal-Byblos",3,"Arsenal-Byblos",1,0,1,0,0
+7989,"Arsenal-Zentaur",6,"Arsenal-Zentauren",1,0,1,0,0
+7990,"Arsenal-Bibliotaph",6,"Arsenal-Bibliotaphen",1,0,1,0,0
+7991,"Arsenal-Poroggo",3,"Arsenal-Poroggos",1,0,1,0,0
+7992,"Arsenal-Calcobrina",3,"Arsenal-Calcobrinas",1,0,1,1,0
+7993,"Arsenal-Logos",3,"Arsenal-Logos",1,0,1,0,0
+7994,"Arsenal-Ventilator",4,"Arsenal-Ventilatoren",1,0,1,0,0
+7995,"Arsenal-Strix",3,"Arsenal-Strixe",1,0,1,0,0
+7996,"Arsenal-Buch",4,"Arsenal-Bücher",2,0,1,2,0
+7997,"Arsenal-Skatene",3,"Arsenal-Skatenen",1,0,1,1,0
+7998,"Arsenal-Calco",3,"Arsenal-Calcos",1,0,1,1,0
+7999,"Arsenal-Brina",3,"Arsenal-Brinas",1,0,1,1,0
+8000,"Arsenal-Vodoriga",3,"Arsenal-Vodorigas",1,0,1,0,0
+8001,"Dämonenwand",3,"Dämonenwände",2,0,1,1,0
+8002,"Arsenal-Auge",4,"Arsenal-Augen",1,0,1,2,0
+8003,"Arsenal-Exergon",4,"Arsenal-Exergone",2,0,1,2,0
+8004,"Arsenal-Gespenst",2,"Arsenal-Gespenster",2,0,1,2,0
+8005,"feist[a] Elbst",2,"feist[a] Elbste",2,0,1,0,0
+8006,"entfesselt[a] Haokah",3,"entfesselt[a] Haokah",1,0,1,0,0
+8007,"jagend[a] Haokah",3,"jagend[a] Haokah",1,0,1,0,0
+8008,"Eureka-Thanatos",3,"Eureka-Thanatos",1,0,1,0,0
+8009,"Val-Nanka",3,"Val-Nankas",1,0,1,0,0
+8010,"Mariachi-Kaktor",4,"Mariachi-Kaktoren",1,0,1,0,0
+8011,"Hydatos-Schnecke",3,"Hydatos-Schnecken",1,0,1,1,0
+8012,"Hydatos-Pudding",4,"Hydatos-Puddings",1,0,1,0,0
+8013,"Labor-Coeurl",3,"Labor-Coeurl",1,0,1,0,0
+8014,"Val-Stechmücke",3,"Val-Stechmücken",1,0,1,1,0
+8015,"Hydatos-Nöck",1,"Hydatos-Nöcken",1,0,1,0,0
+8016,"Hydatos-Ziz",3,"Hydatos-Ziz",1,0,1,0,0
+8017,"finster[a] Geira-Katze",3,"finster[a] Geira-Katzen",1,0,1,1,0
+8018,"Hydatos-Granate",3,"Hydatos-Granaten",1,0,1,1,0
+8019,"Hydatos-Vepar",3,"Hydatos-Vepars",1,0,1,1,0
+8020,"Laborratte",3,"Laborratten",1,0,1,1,0
+8021,"rastlos[a] Hahn",4,"rastlos[a] Hähne",2,0,1,0,0
+8022,"Hydatos-Elbst",3,"Hydatos-Elbste",2,0,1,0,0
+8023,"Hydatos-Tsanahal",4,"Hydatos-Tsanahale",2,0,1,0,0
+8024,"Xzomit",4,"Xzomiten",1,0,1,0,0
+8025,"nomadisch[a] Matanga",3,"nomadisch[a] Matanga",1,0,1,0,0
+8026,"Val-Tulihand",4,"Val-Tulihands",1,0,1,0,0
+8027,"Val-Antilope",3,"Val-Antilopen",1,0,1,1,0
+8028,"Hydatos-Primelephas",3,"Hydatos-Primelephas",1,0,1,0,0
+8029,"See-Yabby",4,"See-Yabbys",1,0,1,0,0
+8030,"Eo'ghrah",4,"Eo'ghrahs",1,0,1,0,0
+8031,"Val-Nullchu",3,"Val-Nullchus",1,0,1,2,0
+8032,"unberechenbar[a] Gastornis",3,"un<SoftHyphen/>be<SoftHyphen/>rechen<SoftHyphen/>bar[a] Gastornis",1,0,1,0,0
+8033,"Puppe[p] #013BL",3,"Puppen[p] #013BL",1,0,1,1,0
+8034,"rostig[a] Brummonaut",6,"rostig[a] Brummonauten",1,0,1,0,0
+8035,"Nichts-Vivel",3,"Nichts-Viveln",1,0,1,1,0
+8036,"Shugen Tengu",3,"Shugen Tengu",1,0,1,0,0
+8037,"nördlich[a] Tiger",4,"nördlich[a] Tiger",2,0,1,0,0
+8038,"finster[a] Nichtsmönch",4,"finster[a] Nichtsmönche",2,0,1,0,0
+8039,"Gorpokkur",4,"Gorpokkure",2,0,1,0,0
+8040,"Val-Mantis",3,"Val-Mantis",1,0,1,1,0
+8041,"Hydatos-Kreiselkrabbe",3,"Hydatos-Kreiselkrabben",1,0,1,1,0
+8042,"Val-Mull",4,"Val-Mulle",2,0,1,0,0
+8043,"Thor[p] der Verlorenen",4,"NONE",2,0,0,0,1
+8044,"rastlos[a] Oger",4,"rastlos[a] Oger",1,0,1,0,0
+8045,"Tigerfalke",8,"Tigerfalken",1,0,1,0,0
+8046,"Hydatos-Mylodon",4,"Hydatos-Mylodons",1,0,1,0,0
+8047,"Laborlöwe",8,"Laborlöwen",1,0,1,0,0
+8048,"Hydatos-Peiste",3,"Hydatos-Peiste",2,0,1,1,0
+8049,"Laborschakal",4,"Laborschakale",2,0,1,0,0
+8050,"Delphyne der Gezeiten",3,"NONE",1,0,0,1,1
+8051,"finster[a] Gargoyle",4,"finster[a] Gargoyles",1,0,1,0,0
+8052,"Hydatos-Zebu",3,"Hydatos-Zebu",1,0,1,0,0
+8053,"Nichts-Vivel",3,"Nichts-Viveln",1,0,1,1,0
+8054,"Kristallklaue",3,"Kristallklauen",1,0,1,1,0
+8055,"seelenlos[a] Forscher",4,"seelenlos[a] Forscher",2,0,1,0,0
+8056,"seelenlos[a] Abenteuerer",4,"seelenlos[a] Abenteuerer",2,0,1,0,0
+8057,"finster[a] Reiter",4,"finster[a] Reiter",2,0,1,0,0
+8058,"Hydatos-Geist",4,"Hydatos-Geister",2,0,1,0,0
+8059,"Samurai-Leiche",3,"Samurai-Leichen",1,0,1,1,0
+8060,"Ovni",3,"NONE",1,0,0,0,1
+8061,"Kristallwächter",4,"Kristallwächter",2,0,1,0,0
+8062,"Eissäule",3,"Eissäulen",1,0,1,1,0
+8063,"Kalamari",3,"NONE",1,0,0,0,1
+8064,"Paralarve",3,"Paralarven",1,0,1,1,0
+8065,"perfekt[a] Spähre",3,"perfekt[a] Spähren",1,0,1,1,0
+8066,"Tristitia",3,"NONE",1,0,0,1,1
+8067,"Phuabo",4,"Phuabos",1,0,1,0,0
+8068,"Leukea",3,"NONE",1,0,0,0,1
+8069,"Stegodon",3,"NONE",1,0,0,0,1
+8070,"Molek",3,"NONE",1,0,0,0,1
+8071,"Molek-Laudator",4,"Molek-Laudatoren",1,0,1,0,0
+8072,"Frosticore",3,"NONE",1,0,0,0,1
+8073,"Piasa",3,"NONE",1,0,0,0,1
+8074,"verdächtig[a] Gefieder",4,"verdächtig[a] Gefieder",2,0,1,2,0
+8075,"unheilvoll[a] Gefieder",4,"unheilvoll[a] Gefieder",2,0,1,2,0
 8076,"Arena-Schleim",4,"Arena-Schleime",2,0,1,0,0
 8077,"Arena-Dullahan",4,"Arena-Dullahans",1,0,1,0,0
 8078,"Arena-Pudding",4,"Arena-Puddings",1,0,1,0,0
@@ -8132,7 +8132,7 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
 8128,"Arena-Scholar",4,"Arena-Scholaren",1,0,1,0,0
 8129,"Azulmagia",3,"NONE",1,0,0,0,1
 8130,"glühend[a] Ango",3,"glühend[a] Angos",1,0,1,0,0
-8131,"",0,"",0,0,0,0,0
+8131,"Hydatos-Elementar",4,"Hydatos-Elementare",2,0,1,2,0
 8132,"Mahlstrom",3,"NONE",1,0,0,0,1
 8133,"Falsch[a] Heiligtum",4,"Falsch[a] Heiligtümer",2,0,1,2,0
 8134,"Killer-Vespula",3,"Killer-Vespulas",1,0,1,1,0
