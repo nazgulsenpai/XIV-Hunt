@@ -7,7 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace FFXIV_GameSense
 {
@@ -108,15 +108,15 @@ namespace FFXIV_GameSense
                 return SetWindowLongPtr(hWnd, nIndex, new IntPtr(dwNewLong));
             else
                 return new IntPtr(SetWindowLong(hWnd, nIndex, (int)dwNewLong));
-        }        
+        }
 
-        internal static async Task InjectDLL(System.Diagnostics.Process Process, string DLLName, bool x86proc)
+        internal static void InjectDLL(System.Diagnostics.Process Process, string DLLName, bool x86proc)
         {
             IntPtr hProcess = Process.Handle;
             // Length of string containing the DLL file name +1 byte padding 
             IntPtr LenWrite = new IntPtr(DLLName.Length + 1);
             // Allocate memory within the virtual address space of the target process 
-            IntPtr AllocMem = VirtualAllocEx(hProcess, (IntPtr)null, LenWrite, AllocationType.Commit, MemoryProtection.ExecuteReadWrite); //allocation pour WriteProcessMemory 
+            IntPtr AllocMem = VirtualAllocEx(hProcess, (IntPtr)null, LenWrite, AllocationType.Commit, MemoryProtection.ExecuteReadWrite);
             
             // Write DLL file name to allocated memory in target process 
             WriteProcessMemory(hProcess, AllocMem, Encoding.Default.GetBytes(DLLName), LenWrite, out uint bytesout);
@@ -166,12 +166,9 @@ namespace FFXIV_GameSense
                 }
                 return;
             }
-            // Sleep for 1 second 
-            await Task.Delay(1000);//Thread.Sleep(1000);
-            //for (int w = 0; !PersistentNamedPipeServer.Instance.IsConnected && w < 1000; w += 10)
-            //{
-            //    await Task.Delay(10);
-            //}
+            // Sleep for up to a second until named pipe client is connected
+            for (int w = 0; !PersistentNamedPipeServer.Instance.IsConnected && w < 1000; w += 10)
+                Thread.Sleep(10);
             // Clear up allocated space ( Allocmem ) 
             VirtualFreeEx(hProcess, AllocMem, (UIntPtr)0, 0x8000);
             // Make sure thread handle is valid before closing... prevents crashes. 

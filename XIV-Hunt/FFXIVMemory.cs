@@ -536,7 +536,6 @@ namespace FFXIV_GameSense
             PersistentNamedPipeServer.SendPipeMessage(SlashInstanceCommand);
         }
 
-        //Something in here throws, on Win10, it gets "caught" but ... ?
         private async Task TryInject()
         {
             string dllfile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, !Is64Bit ? "Hunt.dll" : "Hunt_x64.dll");
@@ -552,7 +551,7 @@ namespace FFXIV_GameSense
             }
             if (!PersistentNamedPipeServer.Instance.IsConnected)
             {
-                await NativeMethods.InjectDLL(Process, dllfile, !Is64Bit);
+                NativeMethods.InjectDLL(Process, dllfile, !Is64Bit);
                 for (int w = 0; !PersistentNamedPipeServer.Instance.IsConnected && w < 1000; w += 100)
                 {
                     await Task.Delay(100);
