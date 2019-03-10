@@ -281,18 +281,12 @@ namespace FFXIV_GameSense
                 serverTimeOffset[0] -= 0x8;
                 if (!Is64Bit)
                 {
-                    mapIdOffset[0] = 0x452C;
-                    lastFailedCommandOffset += 0x4;
+                    mapIdOffset[0] = 0x4700;
                     contentFinderConditionOffset += 0x4;
-                    serverTimeOffset[2] = 0x644;
-                    chatLogStartOffset[1] = 0x2C0;
-                    chatLogTailOffset[1] = 0x2C4;
                 }
                 else
                 {
-                    mapIdOffset[0] = 0x6C48;
-                    lastFailedCommandOffset -= 0x8;
-                    serverTimeOffset[2] = 0x7D4;
+                    mapIdOffset[0] = 0x6F58;
                 }
             }
             contentFinderOffsets = new ContentFinderOffsets(Is64Bit);
@@ -912,8 +906,7 @@ namespace FFXIV_GameSense
                             return;
                         PersistentNamedPipeServer.SendPipeMessage(new PipeMessage(Process.Id, PMCommand.PlayNote) { Parameter = note.GetStep() });
                         Thread.Sleep(note.Length);
-                        if(region == GameRegion.Global)
-                            PersistentNamedPipeServer.SendPipeMessage(noteOff);
+                        PersistentNamedPipeServer.SendPipeMessage(noteOff);
                         ts = note.TimeSpan + note.Length;
                     }
                 })
@@ -1148,18 +1141,17 @@ namespace FFXIV_GameSense
             int offset;
             if (region == GameRegion.Chinese || region == GameRegion.Korean)
             {
-                BNpcNameID = Is64Bit ? 0x16D8 : 0x1380;
-                offset = Is64Bit ? 0x16F8 : 0x13A0;
-                Job = offset + 0x3E;
-                Level = offset + 0x40;
+                offset = Is64Bit ? 0x1748 : 0x1400;
+                StatusEffectsStart = Is64Bit ? offset + 0xC0 : offset + 0xA4;
             }
             else
             {
-                BNpcNameID = Is64Bit ? 0x1730 : 0x13E0;
                 offset = Is64Bit ? 0x1750 : 0x1400;
-                Job = offset + 0x40;
-                Level = offset + 0x42;
+                StatusEffectsStart = Is64Bit ? offset + 0xC8 : offset + 0xA4;
             }
+            BNpcNameID = offset - 0x20;
+            Job = offset + 0x40;
+            Level = offset + 0x42;
             CurrentHP = offset + 0x8;
             MaxHP = offset + 0xC;
             CurrentMP = offset + 0x10;
@@ -1169,10 +1161,6 @@ namespace FFXIV_GameSense
             MaxGP = offset + 0x1C;
             CurrentCP = offset + 0x1E;
             MaxCP = offset + 0x20;
-            if (region == GameRegion.Chinese || region == GameRegion.Korean)
-                StatusEffectsStart = Is64Bit ? offset + 0xC0 : offset + 0xA4;
-            else
-                StatusEffectsStart = Is64Bit ? offset + 0xC8 : offset + 0xA4;
         }
     }
 
