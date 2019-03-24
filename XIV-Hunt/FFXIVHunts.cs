@@ -49,14 +49,14 @@ namespace FFXIV_GameSense
             { 614, new List<ushort>{ 6004,6005,5998,5999,5985 } },//Yanxia
             { 622, new List<ushort>{ 6006,6007,6000,6001,5986 } },//Azim Steppe
         };
-        internal List<Hunt> hunts = new List<Hunt>();
-        private static List<FATEReport> fates = GameResources.GetFates().Select(x => new FATEReport(x)).ToList();
+        internal List<Hunt> Hunts = new List<Hunt>();
+        private static List<FATEReport> FATEs = GameResources.GetFates().Select(x => new FATEReport(x)).ToList();
         private static List<uint> HuntsPutInChat = new List<uint>();
         private static readonly uint[] DCZones = new uint[] { 630, 656, 732, 763, 795, 827 };
         private static HuntsHubConnection hubConnection;
         internal static HttpClient Http { get; private set; } = new HttpClient();
         internal static bool Joined { get; private set; }
-        private static bool joining;
+        private static bool Joining;
         private static ushort lastJoined, lastZone;
         internal const string baseUrl = "https://xivhunt.net/";
         //internal const string baseUrl = "http://localhost:5000/";
@@ -80,7 +80,7 @@ namespace FFXIV_GameSense
         {
             w1 = pw1;
             foreach (KeyValuePair<ushort, HuntRank> kvp in Hunt.RankMap)
-                hunts.Add(new Hunt(kvp.Key));
+                Hunts.Add(new Hunt(kvp.Key));
 
             CreateConnection();
         }
@@ -96,29 +96,9 @@ namespace FFXIV_GameSense
 
         private void RegisterHubMethods()
         {
-            hubConnection.Connection.On<Hunt>("ReceiveHunt", hunt =>
-            {
-                LogHost.Default.Debug(string.Format("[{0}] Report received: {1}", GameResources.GetWorldName(hunt.WorldId), hunt.Name));
-                if (PutInChat(hunt) && Settings.Default.FlashTaskbarIconOnHuntAndFATEs)
-                    if (hunt.LastAlive)
-                        NativeMethods.FlashTaskbarIcon(Program.mem.Process, 45, true);
-                    else
-                        NativeMethods.StopFlashWindowEx(Program.mem.Process);
-            });
-            hubConnection.Connection.On<FATEReport>("ReceiveFATE", fate =>
-            {
-                //LogHost.Default.Debug(string.Format("[{0}] Report received: {1} - {2}%", GameResources.GetWorldName(fate.WorldId), fate.Name(true), fate.Progress));
-                if (PutInChat(fate) && Settings.Default.FlashTaskbarIconOnHuntAndFATEs)
-                    NativeMethods.FlashTaskbarIcon(Program.mem.Process);
-            });
-            hubConnection.Connection.On<DataCenterInstanceMatchInfo>("DCInstanceMatch", instance =>
-            {
-                string s = string.Format(Resources.DCInstanceMatch, Program.AssemblyName.Name, (ServerTimeUtc - instance.StartTime).TotalMinutes.ToString("F0"), $"{baseUrl}DCInstance/{instance.ID}");
-                LogHost.Default.Info("DCInstanceMatch: " + s);
-                DCInstance = instance;
-                ChatMessage cm = new ChatMessage { MessageString = s };
-                _ = Program.mem.WriteChatMessage(cm);
-            });
+            hubConnection.Connection.On(nameof(ReceiveHunt), (Action<Hunt>)(hunt => { ReceiveHunt(hunt); }));
+            hubConnection.Connection.On(nameof(ReceiveFATE), (Action<FATEReport>)(fate => { ReceiveFATE(fate); }));
+            hubConnection.Connection.On(nameof(DCInstanceMatch), (Action<DataCenterInstanceMatchInfo>)(instance => { DCInstanceMatch(instance); }));
             hubConnection.Connection.On<int>("ConnectedCount", connectedCount =>
             {
                 w1.HuntConnectionTextBlock.Dispatcher.Invoke(() => w1.HuntConnectionTextBlock.Text = string.Format(Resources.FormConnectedToCount, GameResources.GetWorldName(Program.mem.GetWorldId()), connectedCount - 1));
@@ -126,16 +106,42 @@ namespace FFXIV_GameSense
             hubConnection.Connection.Closed += Connection_Closed;
         }
 
+        private static void DCInstanceMatch(DataCenterInstanceMatchInfo instance)
+        {
+            string s = string.Format(Resources.DCInstanceMatch, Program.AssemblyName.Name, (ServerTimeUtc - instance.StartTime).TotalMinutes.ToString("F0"), $"{baseUrl}DCInstance/{instance.ID}");
+            LogHost.Default.Info("DCInstanceMatch: " + s);
+            DCInstance = instance;
+            ChatMessage cm = new ChatMessage { MessageString = s };
+            _ = Program.mem.WriteChatMessage(cm);
+        }
+
+        private void ReceiveFATE(FATEReport fate)
+        {
+            //LogHost.Default.Debug(string.Format("[{0}] Report received: {1} - {2}%", GameResources.GetWorldName(fate.WorldId), fate.Name(true), fate.Progress));
+            if (PutInChat(fate) && Settings.Default.FlashTaskbarIconOnHuntAndFATEs)
+                NativeMethods.FlashTaskbarIcon(Program.mem.Process);
+        }
+
+        private void ReceiveHunt(Hunt hunt)
+        {
+            LogHost.Default.Debug(string.Format("[{0}] Report received: {1}", GameResources.GetWorldName(hunt.WorldId), hunt.Name));
+            if (PutInChat(hunt) && Settings.Default.FlashTaskbarIconOnHuntAndFATEs)
+                if (hunt.LastAlive)
+                    NativeMethods.FlashTaskbarIcon(Program.mem.Process, 45, true);
+                else
+                    NativeMethods.StopFlashWindowEx(Program.mem.Process);
+        }
+
         private Task Connection_Closed(Exception arg)
         {
-            Joined = joining = false;
+            Joined = Joining = false;
             return Task.CompletedTask;
         }
 
         internal HuntRank HuntRankFor(ushort HuntID)
         {
-            if (hunts.Any(x => x.Id == HuntID))
-                return hunts.Single(x => x.Id == HuntID).Rank;
+            if (Hunts.Any(x => x.Id == HuntID))
+                return Hunts.Single(x => x.Id == HuntID).Rank;
             throw new ArgumentException("Unknown hunt", nameof(HuntID));
         }
 
@@ -150,17 +156,17 @@ namespace FFXIV_GameSense
 
         private bool PutInChat(FATEReport fate)
         {
-            int idx = fates.IndexOf(fate);
+            int idx = FATEs.IndexOf(fate);
             if (idx == -1)
                 return false;
-            fates[idx].State = fate.State;
-            fates[idx].StartTimeEpoch = fate.StartTimeEpoch;
-            fates[idx].Duration = fate.Duration;
-            fates[idx].Progress = fate.Progress;
+            FATEs[idx].State = fate.State;
+            FATEs[idx].StartTimeEpoch = fate.StartTimeEpoch;
+            FATEs[idx].Duration = fate.Duration;
+            FATEs[idx].Progress = fate.Progress;
             bool skipAnnounce = Settings.Default.NoAnnouncementsInContent && Program.mem.GetCurrentContentFinderCondition() > 0
                 || (Math.Abs(fate.TimeRemaining.TotalHours) < 3 && fate.TimeRemaining.TotalMinutes < Settings.Default.FATEMinimumMinutesRemaining)
-                || ((fate.State == FATEState.Preparation) ? fates[idx].lastPutInChat > Program.mem.GetServerUtcTime().AddMinutes(-10) : Math.Abs(fate.Progress - fates[idx].LastReportedProgress) < Settings.Default.FATEMinimumPercentInterval && Settings.Default.FATEMinimumPercentInterval > 0);
-            if (FateNotifyCheck(fates[idx].ID) && fates[idx].lastPutInChat < Program.mem.GetServerUtcTime().AddMinutes(-Settings.Default.FATEInterval) && !fate.HasEnded && !skipAnnounce)
+                || ((fate.State == FATEState.Preparation) ? FATEs[idx].lastPutInChat > Program.mem.GetServerUtcTime().AddMinutes(-10) : Math.Abs(fate.Progress - FATEs[idx].LastReportedProgress) < Settings.Default.FATEMinimumPercentInterval && Settings.Default.FATEMinimumPercentInterval > 0);
+            if (FateNotifyCheck(FATEs[idx].ID) && FATEs[idx].lastPutInChat < Program.mem.GetServerUtcTime().AddMinutes(-Settings.Default.FATEInterval) && !fate.HasEnded && !skipAnnounce)
             {
                 ChatMessage cm = new ChatMessage();
                 string postpend;
@@ -170,11 +176,11 @@ namespace FFXIV_GameSense
                     postpend = fate.Progress + "%";
                 else
                     postpend = string.Format(Resources.FATEPrcTimeRemaining, fate.Progress, (int)fate.TimeRemaining.TotalMinutes, fate.TimeRemaining.Seconds.ToString("D2"));
-                cm = ChatMessage.MakePosChatMessage(string.Format(Resources.FATEMsg, fates[idx].Name()), fate.ZoneID, fate.PosX, fate.PosY, " " + postpend);
+                cm = ChatMessage.MakePosChatMessage(string.Format(Resources.FATEMsg, FATEs[idx].Name()), fate.ZoneID, fate.PosX, fate.PosY, " " + postpend);
                 _ = Program.mem.WriteChatMessage(cm);
                 CheckAndPlaySound(HuntRank.FATE);
-                fates[idx].lastPutInChat = Program.mem.GetServerUtcTime();
-                fates[idx].LastReportedProgress = fate.Progress;
+                FATEs[idx].lastPutInChat = Program.mem.GetServerUtcTime();
+                FATEs[idx].LastReportedProgress = fate.Progress;
                 //if (fate.Progress > 99)
                 //    fates[idx].lastReportedDead = DateTime.UtcNow;
                 return true;
@@ -250,7 +256,7 @@ namespace FFXIV_GameSense
                 await Connect();
             if (!hubConnection.Connected)
                 return;
-            if (lastJoined != mem.GetWorldId() && Joined && !joining || !Joined)
+            if (lastJoined != mem.GetWorldId() && Joined && !Joining || !Joined)
             {
                 await LeaveGroup();
                 await JoinServerGroup();
@@ -271,7 +277,7 @@ namespace FFXIV_GameSense
                 await LeaveDCZone();
             }
             lastZone = thisZone;
-            foreach (Monster c in mem.Combatants.OfType<Monster>().Where(c => hunts.Exists(h => h.Id == c.BNpcNameID && GetZoneId(c.BNpcNameID) == thisZone)))
+            foreach (Monster c in mem.Combatants.OfType<Monster>().Where(c => Hunts.Exists(h => h.Id == c.BNpcNameID && GetZoneId(c.BNpcNameID) == thisZone)))
             {
                 _ = ReportHunt(c);
             }
@@ -351,26 +357,26 @@ namespace FFXIV_GameSense
 
         private async Task ReportFate(FATE f)
         {
-            int idx = fates.FindIndex(h => h.ID == f.ID);
-            if (idx < 0 || (fates[idx].LastReported > ServerTimeUtc.AddSeconds(-5) && !(fates[idx].Progress != 100 && f.Progress > 99)))
+            int idx = FATEs.FindIndex(h => h.ID == f.ID);
+            if (idx < 0 || (FATEs[idx].LastReported > ServerTimeUtc.AddSeconds(-5) && !(FATEs[idx].Progress != 100 && f.Progress > 99)))
                 return;
 
-            fates[idx].LastReported = ServerTimeUtc;
+            FATEs[idx].LastReported = ServerTimeUtc;
             //too pussy to use copy constructor
-            fates[idx].Progress = f.Progress;
-            fates[idx].PosX = f.PosX;
-            fates[idx].PosZ = f.PosZ;
-            fates[idx].PosY = f.PosY;
-            fates[idx].ZoneID = f.ZoneID;
-            fates[idx].Duration = f.Duration;
-            fates[idx].StartTimeEpoch = f.StartTimeEpoch;
-            fates[idx].State = f.State;
-            fates[idx].ZoneID = f.ZoneID;
+            FATEs[idx].Progress = f.Progress;
+            FATEs[idx].PosX = f.PosX;
+            FATEs[idx].PosZ = f.PosZ;
+            FATEs[idx].PosY = f.PosY;
+            FATEs[idx].ZoneID = f.ZoneID;
+            FATEs[idx].Duration = f.Duration;
+            FATEs[idx].StartTimeEpoch = f.StartTimeEpoch;
+            FATEs[idx].State = f.State;
+            FATEs[idx].ZoneID = f.ZoneID;
 
             try
             {
                 if (hubConnection.Connected && Joined)
-                    await hubConnection.Connection.InvokeAsync(nameof(ReportFate), fates[idx]);
+                    await hubConnection.Connection.InvokeAsync(nameof(ReportFate), FATEs[idx]);
             }
             catch (Exception e) { LogHost.Default.WarnException(nameof(ReportFate), e); }
         }
@@ -384,9 +390,9 @@ namespace FFXIV_GameSense
 
         private async Task JoinServerGroup()
         {
-            if (Joined && hubConnection.Connected || joining)
+            if (Joined && hubConnection.Connected || Joining)
                 return;
-            joining = true;
+            Joining = true;
             w1.HuntConnectionTextBlock.Dispatcher.Invoke(() => w1.HuntConnectionTextBlock.Text = Resources.FormReadingSID);
             ushort sid = Program.mem.GetWorldId();
             Reporter r = new Reporter { WorldID = sid, Name = Program.mem.GetSelfCombatant().Name, Version = Program.AssemblyName.Version };
@@ -403,12 +409,12 @@ namespace FFXIV_GameSense
                 });
             else if(result == JoinGroupResult.Locked)
                 w1.HuntConnectionTextBlock.Dispatcher.Invoke(() => w1.HuntConnectionTextBlock.Text = string.Format(Resources.FormJoinLocked, Program.AssemblyName.Name));
-            joining = false;
+            Joining = false;
             Joined = true;
             lastJoined = sid;
-            foreach (Hunt h in hunts)
+            foreach (Hunt h in Hunts)
                 h.WorldId = sid;
-            foreach (FATEReport f in fates)
+            foreach (FATEReport f in FATEs)
                 f.WorldId = sid;
             ushort zid = Program.mem.GetZoneId();
             if (Array.IndexOf(DCZones, zid) > -1)
@@ -430,29 +436,29 @@ namespace FFXIV_GameSense
                 || (hunt.IsSB() && hunt.Rank == HuntRank.S && Settings.Default.SSB && Settings.Default.notifyS)
                 )
             {
-                int idx = hunts.IndexOf(hunt);
+                int idx = Hunts.IndexOf(hunt);
                 ChatMessage cm = new ChatMessage();
-                if (Settings.Default.OncePerHunt ? !HuntsPutInChat.Contains(hunt.OccurrenceID) : hunts[idx].lastPutInChat < Program.mem.GetServerUtcTime().AddMinutes(-Settings.Default.HuntInterval) && hunt.LastAlive /*&& hunts[idx].lastReportedDead < Program.mem.GetServerUtcTime().AddSeconds(-15)*/)
+                if (Settings.Default.OncePerHunt ? !HuntsPutInChat.Contains(hunt.OccurrenceID) : Hunts[idx].lastPutInChat < Program.mem.GetServerUtcTime().AddMinutes(-Settings.Default.HuntInterval) && hunt.LastAlive /*&& hunts[idx].lastReportedDead < Program.mem.GetServerUtcTime().AddSeconds(-15)*/)
                 {
                     cm = ChatMessage.MakePosChatMessage(string.Format(Resources.HuntMsg, hunt.Rank.ToString(), hunt.Name), GetZoneId(hunt.Id), hunt.LastX, hunt.LastY);
                     if (cm != null)
                     {
                         _ = Program.mem.WriteChatMessage(cm);
                         CheckAndPlaySound(hunt.Rank);
-                        hunts[idx] = hunt;
+                        Hunts[idx] = hunt;
                         HuntsPutInChat.Add(hunt.OccurrenceID);
-                        hunts[idx].lastPutInChat = Program.mem.GetServerUtcTime();
+                        Hunts[idx].lastPutInChat = Program.mem.GetServerUtcTime();
                         return true;
                     }
                 }
-                else if (hunts[idx].lastReportedDead < ServerTimeUtc.AddSeconds(-12) && !hunt.LastAlive)
+                else if (Hunts[idx].lastReportedDead < ServerTimeUtc.AddSeconds(-12) && !hunt.LastAlive)
                 {
                     cm.MessageString = string.Format(Resources.HuntMsgKilled, hunt.Rank.ToString(), hunt.Name);
                     if (cm != null)
                     {
                         _ = Program.mem.WriteChatMessage(cm);
-                        hunts[idx] = hunt;
-                        hunts[idx].lastReportedDead = Program.mem.GetServerUtcTime();
+                        Hunts[idx] = hunt;
+                        Hunts[idx].lastReportedDead = Program.mem.GetServerUtcTime();
                         return true;
                     }
                 }
@@ -482,22 +488,22 @@ namespace FFXIV_GameSense
 
         private async Task ReportHunt(Monster c)
         {
-            int idx = hunts.FindIndex(h => h.Id == c.BNpcNameID);
-            if (hunts[idx].LastReported > ServerTimeUtc.AddSeconds(-5) && c.CurrentHP > 0)
+            int idx = Hunts.FindIndex(h => h.Id == c.BNpcNameID);
+            if (Hunts[idx].LastReported > ServerTimeUtc.AddSeconds(-5) && c.CurrentHP > 0)
                 return;//no need to report this often
             //else if (!hunts[idx].LastAlive && hunts[idx].LastReported > DateTime.UtcNow.AddSeconds(-5))
             //    return;
 
-            hunts[idx].LastReported = ServerTimeUtc;
-            hunts[idx].LastX = c.PosX;
-            hunts[idx].LastY = c.PosY;
-            hunts[idx].OccurrenceID = c.ID;
-            hunts[idx].LastAlive = (c.CurrentHP > 0) ? true : false;
+            Hunts[idx].LastReported = ServerTimeUtc;
+            Hunts[idx].LastX = c.PosX;
+            Hunts[idx].LastY = c.PosY;
+            Hunts[idx].OccurrenceID = c.ID;
+            Hunts[idx].LastAlive = (c.CurrentHP > 0) ? true : false;
 
             try
             {
                 if (Joined)
-                    await hubConnection.Connection.InvokeAsync(nameof(ReportHunt), hunts[idx]);
+                    await hubConnection.Connection.InvokeAsync(nameof(ReportHunt), Hunts[idx]);
             }
             catch (Exception e) { LogHost.Default.WarnException(nameof(ReportHunt), e); }
         }
@@ -583,20 +589,11 @@ namespace FFXIV_GameSense
             LastReported = DateTime.MinValue;
         }
 
-        internal bool IsARR()
-        {
-            return Id < 3000;
-        }
+        internal bool IsARR() => Id < 3000;
 
-        internal bool IsHW()
-        {
-            return Id > 3000 && Id < 5000;
-        }
+        internal bool IsHW() => Id > 3000 && Id < 5000;
 
-        internal bool IsSB()
-        {
-            return Id > 5000 && Id < 7000;
-        }
+        internal bool IsSB() => Id > 5000 && Id < 7000;
 
         public override bool Equals(object obj)
         {
@@ -607,10 +604,7 @@ namespace FFXIV_GameSense
             return Id.Equals(item.Id) && WorldId.Equals(item.WorldId);
         }
 
-        public override int GetHashCode()
-        {
-            return Id.GetHashCode();
-        }
+        public override int GetHashCode() => Id.GetHashCode();
 
         internal static bool TryGetHuntRank(ushort HuntID, out HuntRank hr) => (RankMap.TryGetValue(HuntID, out hr)) ? true : false;
     }
