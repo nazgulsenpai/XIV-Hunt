@@ -165,7 +165,6 @@ namespace FFXIV_GameSense.UI
         {
             if (e.SettingName == nameof(Settings.PerformDirectory))
             {
-                Debug.WriteLine(nameof(SettingChanging) + " HIT");
                 IndexPerformances((string)e.NewValue);
             }
         }

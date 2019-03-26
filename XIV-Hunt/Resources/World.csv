@@ -22,13 +22,13 @@ int32,str,byte,WorldDCGroupType,bit&01
 33,"Twintania",5,"INVALID",False
 34,"Brynhildr",3,"Primal",True
 35,"Famfrit",3,"Primal",True
-36,"Lich",5,"Chaos",True
+36,"Lich",5,"Light",True
 37,"Mateus",3,"Aether",True
 38,"Shemhazai",3,"INVALID",True
 39,"Omega",5,"Chaos",True
 40,"Jenova",3,"Aether",True
 41,"Zalera",3,"Aether",True
-42,"Zodiark",5,"Chaos",True
+42,"Zodiark",5,"Light",True
 43,"Alexander",1,"Gaia",True
 44,"Anima",1,"Mana",True
 45,"Carbuncle",1,"Elemental",True
@@ -42,7 +42,7 @@ int32,str,byte,WorldDCGroupType,bit&01
 53,"Exodus",3,"Primal",True
 54,"Faerie",3,"Aether",True
 55,"Lamia",3,"Primal",True
-56,"Phoenix",5,"Chaos",True
+56,"Phoenix",5,"Light",True
 57,"Siren",3,"Aether",True
 58,"Garuda",1,"Elemental",True
 59,"Ifrit",1,"Gaia",True
@@ -52,8 +52,8 @@ int32,str,byte,WorldDCGroupType,bit&01
 63,"Gilgamesh",3,"Aether",True
 64,"Leviathan",3,"Primal",True
 65,"Midgardsormr",3,"Aether",True
-66,"Odin",5,"Chaos",True
-67,"Shiva",5,"Chaos",True
+66,"Odin",5,"Light",True
+67,"Shiva",5,"Light",True
 68,"Atomos",1,"Elemental",True
 69,"Bahamut",1,"Gaia",True
 70,"Chocobo",1,"Mana",True

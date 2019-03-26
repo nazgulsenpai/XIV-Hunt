@@ -7894,12 +7894,12 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
 7890,"Rabenpanzer",4,"Rabenpanzer",2,0,1,0,0
 7891,"Falkensöldner",4,"Falkensöldner",2,0,1,0,0
 7892,"Rabensöldner",4,"Rabensöldner",2,0,1,0,0
-7893,"",0,"",0,0,0,0,0
-7894,"",0,"",0,0,0,0,0
-7895,"",0,"",0,0,0,0,0
-7896,"",0,"",0,0,0,0,0
-7897,"",0,"",0,0,0,0,0
-7898,"",0,"",0,0,0,0,0
+7893,"Garuda",3,"NONE",1,0,0,1,1
+7894,"Isolde-Klaue",3,"Isolde-Klauen",1,0,1,1,0
+7895,"Iseultalon",3,"NONE",1,0,0,1,1
+7896,"Noctis",3,"NONE",1,0,0,0,1
+7897,"Magitek-Infanterist",6,"Magitek-Infanteristen",1,0,1,0,0
+7898,"schwer[a] Magitek-Mech",4,"schwer[a] Magitek-Mechs",1,0,1,0,0
 7899,"Cidolfus",3,"NONE",1,0,0,0,1
 7900,"vergänglich[a] Ritter",4,"vergänglich[a] Ritter",2,0,1,0,0
 7901,"Eiswolf",4,"Eiswölfe",2,0,1,0,0

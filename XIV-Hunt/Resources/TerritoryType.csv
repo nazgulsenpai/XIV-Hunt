@@ -727,16 +727,16 @@ int32,str,str,byte,PlaceName,PlaceName,PlaceName,Map,byte,byte,byte,uint16,bit&0
 827,"z3fd","ex2/05_zon_z3/fld/z3fd/level/z3fd",1,"???","","Eureka Hydatos","z3fd/01",1,3,41,639,False,100,False,0,True,False,True,False,524,122010,124756,,0,"",-1,0,-1,False,2,0,25,0,False
 828,"z3e2_2","ex2/05_zon_z3/evt/z3e2/level/z3e2",1,"???","","The <Emphasis>Prima Vista</Emphasis> Tiring Room","z3e2/00",1,0,15,0,False,0,False,0,True,False,False,False,510,-1,-1,"ArrayEventHandler#853859",0,"Kugane",-1,0,-1,False,2,0,0,0,False
 829,"g3e7","ex2/01_gyr_g3/evt/g3e7/level/g3e7",1,"Gyr Abania","Gyr Abania","Eorzean Alliance Headquarters","g3e7/02",12,0,15,0,False,0,False,0,True,False,False,False,77,-1,-1,"ArrayEventHandler#853857",0,"The Ala Mhigan Quarter",-1,0,-1,False,2,0,0,0,False
-830,"","",0,"","","","",0,0,0,0,False,0,False,0,False,False,False,False,0,0,0,,0,"",0,0,0,False,0,0,0,0,False
+830,"ec011","ex2/01_gyr_g3/dun/g3d5/level/g3d5",1,"Gyr Abania","Gyr Abania","The Ghimlyt Dark","g3d5/00",12,1,29,648,False,0,False,0,True,False,False,False,1001,-1,-1,,0,"",-1,367,-1,False,2,0,0,0,False
 831,"w1eh","ffxiv/wil_w1/evt/w1eh/level/w1eh",1,"Thanalan","Thanalan","The Manderville Tables","",4,2,3,0,False,0,False,0,True,False,False,False,641,122002,123113,,0,"",-1,0,-1,False,0,0,0,0,False
 832,"w1ei","ffxiv/wil_w1/evt/w1ei/level/w1ei",1,"Thanalan","Thanalan","The Gold Saucer","",4,1,3,0,False,0,False,0,True,False,False,False,1001,-1,-1,,0,"",-1,0,-1,False,0,0,0,0,False
-833,"","",0,"","","","",0,0,0,0,False,0,False,0,False,False,False,False,0,0,0,,0,"",0,0,0,False,0,0,0,0,False
-834,"","",0,"","","","",0,0,0,0,False,0,False,0,False,False,False,False,0,0,0,,0,"",0,0,0,False,0,0,0,0,False
+833,"r1fa_event2","ffxiv/roc_r1/fld/r1fa/level/r1fa",1,"Coerthas","Coerthas","The Howling Eye","r1fa/02",5,0,7,0,False,101,False,0,True,False,False,False,1001,-1,-1,"ArrayEventHandler#853861",0,"Camp Dragonhead",-1,0,-1,False,0,0,0,0,False
+834,"r1fa_4","ffxiv/roc_r1/fld/r1fa/level/r1fa",1,"Coerthas","Coerthas","The Howling Eye","r1fa/01",5,1,29,646,False,101,False,0,True,False,False,False,1001,-1,-1,,0,"",-1,371,-1,False,0,0,0,0,False
 835,"","",0,"","","","",0,0,0,0,False,0,False,0,False,False,False,False,0,0,0,,0,"",0,0,0,False,0,0,0,0,False
 836,"","",0,"","","","",0,0,0,0,False,0,False,0,False,False,False,False,0,0,0,,0,"",0,0,0,False,0,0,0,0,False
 837,"","",0,"","","","",0,0,0,0,False,0,False,0,False,False,False,False,0,0,0,,0,"",0,0,0,False,0,0,0,0,False
 838,"","",0,"","","","",0,0,0,0,False,0,False,0,False,False,False,False,0,0,0,,0,"",0,0,0,False,0,0,0,0,False
-839,"","",0,"","","","",0,0,0,0,False,0,False,0,False,False,False,False,0,0,0,,0,"",0,0,0,False,0,0,0,0,False
+839,"e0200","ffxiv/fst_f1/fld/f1f2/level/f1f2",1,"The Black Shroud","The Black Shroud","East Shroud","f1f2/00",3,3,9,647,False,0,False,0,True,False,False,False,612,-1,-1,,184,"",100,369,-1,False,0,0,0,0,False
 840,"","",0,"","","","",0,0,0,0,False,0,False,0,False,False,False,False,0,0,0,,0,"",0,0,0,False,0,0,0,0,False
 841,"","",0,"","","","",0,0,0,0,False,0,False,0,False,False,False,False,0,0,0,,0,"",0,0,0,False,0,0,0,0,False
 842,"","",0,"","","","",0,0,0,0,False,0,False,0,False,False,False,False,0,0,0,,0,"",0,0,0,False,0,0,0,0,False

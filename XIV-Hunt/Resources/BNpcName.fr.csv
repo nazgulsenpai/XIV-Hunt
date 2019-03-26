@@ -3373,7 +3373,7 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
 3369,"Einhänder",0,"Einhänder",0,1,1,0,1
 3370,"Astraea",0,"Astraea",0,1,1,0,1
 3371,"mini-réservoir de céruleum",0,"mini-réservoirs de céruleum",0,0,1,0,0
-3372,"réservoir de céruleum",0,"réservoirs de céruleum",0,0,1,0,0
+3372,"grand réservoir de céruleum",0,"grands réservoirs de céruleum",0,0,1,0,0
 3373,"vaisseau magitek",0,"vaisseaux magitek",0,0,1,0,0
 3374,"Midgardsormr",0,"Midgardsormr",0,0,1,0,1
 3375,"dragon mirage",0,"dragons mirages",0,0,1,0,0
@@ -7894,12 +7894,12 @@ int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
 7890,"automate tank des Corbeaux",0,"automates tanks des Corbeaux",0,1,1,0,0
 7891,"automate mercenaire des Faucons",0,"automates mercenaires des Faucons",0,1,1,0,0
 7892,"automate mercenaire des Corbeaux",0,"automates mercenaires des Corbeaux",0,1,1,0,0
-7893,"",0,"",0,0,0,0,0
-7894,"",0,"",0,0,0,0,0
-7895,"",0,"",0,0,0,0,0
-7896,"",0,"",0,0,0,0,0
-7897,"",0,"",0,0,0,0,0
-7898,"",0,"",0,0,0,0,0
+7893,"Garuda",0,"Garuda",0,0,1,1,1
+7894,"vent turbulent",0,"vents turbulents",0,0,1,0,0
+7895,"griffe funeste mutante",0,"griffes funestes mutantes",0,0,1,1,0
+7896,"Noctis",0,"Noctis",0,0,1,0,1
+7897,"soldat mécanique",0,"soldats mécaniques",0,0,1,0,0
+7898,"AM-X",0,"AM-X",0,1,1,0,0
 7899,"Cid le Dieu de la Foudre",0,"Cid le Dieu de la Foudre",0,0,1,0,1
 7900,"chevalier évanescent",0,"chevaliers évanescents",0,0,1,0,0
 7901,"grêlon de glace",0,"grêlons de glace",0,0,1,0,0
