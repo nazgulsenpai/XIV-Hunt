@@ -62,7 +62,7 @@ namespace FFXIV_GameSense.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to key,0,1,2,3,4,5,6,7
-        ///#,Singular,,Plural,,StartsWithVowel,,,
+        ///#,Singular,Adjective,Plural,PossessivePronoun,StartsWithVowel,,Pronoun,Article
         ///int32,str,sbyte,str,sbyte,sbyte,sbyte,sbyte,sbyte
         ///0,&quot;&quot;,0,&quot;&quot;,0,0,1,0,0
         ///1,&quot;&quot;,0,&quot;&quot;,0,0,0,0,0
@@ -74,8 +74,7 @@ namespace FFXIV_GameSense.Properties {
         ///7,&quot;giant gnat&quot;,0,&quot;giant gnats&quot;,0,0,1,0,0
         ///8,&quot;ked&quot;,0,&quot;keds&quot;,0,0,1,0,0
         ///9,&quot;miteling&quot;,0,&quot;mitelings&quot;,0,0,1,0,0
-        ///10,&quot;diremite&quot;,0,&quot;diremites&quot;,0,0,1,0,0
-        ///11, [rest of string was truncated]&quot;;.
+        ///10 [rest of string was truncated]&quot;;.
         /// </summary>
         public static string BNpcName {
             get {
@@ -84,9 +83,8 @@ namespace FFXIV_GameSense.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to key,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77
-        ///#,,TerritoryType,ContentLinkType,Content,,,,,,ContentMemberType,,,,,,ClassJobLevel{Required},ClassJobLevel{Sync},ItemLevel{Required},ItemLevel{Sync},,AllowReplacement,,,,,,HighEndDuty,,,,,,Name,ContentType,Transient,,,Image,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-        ///int32,str,Territor [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to key,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79
+        ///#,,TerritoryType,ContentLinkType,Content,,,,,,ContentMemberType,,,,,,ClassJobLevel{Required},ClassJobLevel{Sync},ItemLevel{Required},ItemLevel{Sync},,AllowReplacement,,,,,,HighEndDuty,,,,DutyRecorderAllowed,,,,Name,ContentType,,Transient,,Image,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,, [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ContentFinderCondition {
             get {
@@ -169,8 +167,8 @@ namespace FFXIV_GameSense.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to key,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33
-        ///#,EurekaFate,,Location,ClassJobLevel,ClassJobLevel{Max},EventItem,,,,,Icon{Objective},Icon{Map},,Music,,,,,,,,,,,,,,Name,Description,Objective,StatusText[0],StatusText[1],StatusText[2],ArrayIndex
-        ///int32,byte,byte,uint32,byte,byte,EventItem,uint16,byte,byte,byte,Image,Image,uint32,BGM,uint32,uint32,uint16,uint16,uint16,bit&amp;01,bit&amp;02,bit&amp;04,uint16,bit&amp;08,bit&amp;10,bit&amp;20,uint32,str,str,str,str,str,str,ArrayEventHandl [rest of string was truncated]&quot;;.
+        ///#,EurekaFate,,Location,ClassJobLevel,ClassJobLevel{Max},EventItem,,,,,Icon{Objective},Icon{Map},,Music,,,,,,HasWorldMapIcon,,,,,,,,Name,Description,Objective,StatusText[0],StatusText[1],StatusText[2],ArrayIndex
+        ///int32,byte,byte,uint32,byte,byte,EventItem,uint16,byte,byte,byte,Image,Image,uint32,BGM,uint32,uint32,uint16,uint16,uint16,bit&amp;01,bit&amp;02,bit&amp;04,uint16,bit&amp;08,bit&amp;10,bit&amp;20,uint32,str,str,str,str,str,str, [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Fate {
             get {
@@ -746,6 +744,16 @@ namespace FFXIV_GameSense.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Receive reports from
+        ///other worlds.
+        /// </summary>
+        public static string FormSubscribeToOtherWorlds {
+            get {
+                return ResourceManager.GetString("FormSubscribeToOtherWorlds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Notifications.
         /// </summary>
         public static string FormTabCtrlNotifications {
@@ -968,11 +976,11 @@ namespace FFXIV_GameSense.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to key,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16
-        ///#,,,,Hierarchy,MapMarkerRange,Id,SizeFactor,Offset{X},Offset{Y},PlaceName{Region},PlaceName,PlaceName{Sub},DiscoveryIndex,,TerritoryType,DiscoveryArrayByte,
+        ///#,,,MapIndex,Hierarchy,MapMarkerRange,Id,SizeFactor,Offset{X},Offset{Y},PlaceName{Region},PlaceName,PlaceName{Sub},DiscoveryIndex,,TerritoryType,DiscoveryArrayByte,
         ///int32,byte,byte,sbyte,byte,uint16,str,uint16,int16,int16,PlaceName,PlaceName,PlaceName,int16,uint32,TerritoryType,bit&amp;01,bit&amp;02
         ///0,0,0,0,0,0,&quot;&quot;,100,0,0,&quot;&quot;,&quot;&quot;,&quot;&quot;,-1,0,,True,False
         ///1,0,0,0,1,0,&quot;default/00&quot;,100,0,0,&quot;???&quot;,&quot;Eorzea&quot;,&quot;&quot;,-1,0,&quot;&quot;,True,False
-        ///2,2,2,0,1,3,&quot;f1t1/00&quot;,200,0,0,&quot;The Black Shroud&quot;,&quot;New Grid [rest of string was truncated]&quot;;.
+        ///2,2,2,0,1,3,&quot;f1t1/00&quot;,200,0,0,&quot;The Black Shroud&quot;,&quot; [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Map {
             get {
@@ -1162,22 +1170,22 @@ namespace FFXIV_GameSense.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to key,0,1,2,3
-        ///#,Name,,DataCenter,
+        ///#,Name,,DataCenter,IsPublic
         ///int32,str,byte,WorldDCGroupType,bit&amp;01
         ///0,&quot;crossworld&quot;,0,&quot;INVALID&quot;,False
-        ///1,&quot;c-funereus&quot;,0,&quot;Gaia&quot;,False
+        ///1,&quot;reserved1&quot;,0,&quot;Elemental&quot;,False
         ///2,&quot;c-contents&quot;,0,&quot;INVALID&quot;,False
         ///3,&quot;c-whiteae&quot;,0,&quot;Elemental&quot;,False
         ///4,&quot;c-baudinii&quot;,0,&quot;INVALID&quot;,False
         ///5,&quot;c-contents2&quot;,0,&quot;Gaia&quot;,False
+        ///6,&quot;c-funereus&quot;,0,&quot;INVALID&quot;,False
         ///16,&quot;konconv&quot;,0,&quot;INVALID&quot;,False
         ///23,&quot;Asura&quot;,1,&quot;Mana&quot;,True
         ///24,&quot;Belias&quot;,1,&quot;Mana&quot;,True
         ///25,&quot;Chaos&quot;,1,&quot;INVALID&quot;,True
         ///26,&quot;Hecatoncheir&quot;,1,&quot;INVALID&quot;,True
         ///27,&quot;Moomba&quot;,1,&quot;INVALID&quot;,True
-        ///28,&quot;Pandaemonium&quot;,1,&quot;Mana&quot;,True
-        ///29,&quot;Shinryu&quot;,1,&quot;Mana&quot;,Tru [rest of string was truncated]&quot;;.
+        ///28,&quot;Pandaemo [rest of string was truncated]&quot;;.
         /// </summary>
         public static string World {
             get {

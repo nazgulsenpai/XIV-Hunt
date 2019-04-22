@@ -26,8 +26,8 @@
                 <GroupBox IsHitTestVisible="True" x:Name="HuntNotifyGroupBox" Margin="0,0,0,0" Header="{x:Static properties:Resources.GroupBoxHeader}" IsEnabled="False">
                     <Grid Margin="0,0,0,0" IsHitTestVisible="True" x:Name="Grid">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="1*" MaxHeight="36" />
-                            <RowDefinition Height="7.5*" />
+                            <RowDefinition Height="1*" MaxHeight="40" />
+                            <RowDefinition Height="6*" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width=".5*" MaxWidth="38" />
@@ -44,8 +44,8 @@
                         <UI:AlarmButton x:Name="FATEBell" Grid.Column="0" Grid.Row="1" Click="SBell_Click" IsEnabled="{Binding DataContext.FATEsAny, RelativeSource={RelativeSource AncestorType=Window}, Mode=OneTime}" IsEnabledChanged="FATEBell_IsEnabledChanged" VerticalAlignment="Top"/>
                         <TextBlock Text="{x:Static properties:Resources.FormFATEs}" Grid.Column="1" Grid.Row="1"/>
                         <UI:FATEsListView x:Name="FATEsListView" DataContext="{Binding Path=FATEEntries, Mode=OneWay}" AllFATEsDeselected="FATEsListView_AllFATEsDeselected" FATESelected="FATEsListView_FATESelected" Margin="0,16,0,0" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="6"/>
-                        <CheckBox x:Name="SCheck" VerticalAlignment="Top" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=notifyS, Mode=TwoWay}" Grid.Column="1" Grid.Row="0" Content="{x:Static properties:Resources.FormSRanks}" Checked="SCheck_Checked" Unchecked="SCheck_Unchecked"/>
-                        <UniformGrid Grid.Column="1" Margin="0,15,0,0" Columns="3" IsEnabled="{Binding Source={x:Static properties:Settings.Default}, Path=notifyS, Mode=TwoWay}" IsEnabledChanged="UniformGrid_IsEnabledChanged">
+                        <CheckBox x:Name="SCheck" VerticalAlignment="Top" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=notifyS, Mode=TwoWay}" Grid.Column="1" Grid.Row="0" Content="{x:Static properties:Resources.FormSRanks}" Checked="SCheck_Checked" Unchecked="SCheck_Unchecked" Height="15"/>
+                        <UniformGrid Grid.Column="1" MaxHeight="25" Margin="0,20,0,0" Columns="3" IsEnabled="{Binding Source={x:Static properties:Settings.Default}, Path=notifyS, Mode=TwoWay}" IsEnabledChanged="UniformGrid_IsEnabledChanged">
                             <CheckBox x:Name="SARR" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=SARR, Mode=TwoWay}" Checked="FilterCheckBoxOpacityUp" Unchecked="FilterCheckBoxOpacityDown" Opacity="0.35">
                                 <CheckBox.Template>
                                     <ControlTemplate>
@@ -75,7 +75,7 @@
                             </CheckBox>
                         </UniformGrid>
                         <CheckBox x:Name="ACheck" VerticalAlignment="Top" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=notifyA, Mode=TwoWay}" Grid.Column="3" Grid.Row="0" Content="{x:Static properties:Resources.FormARanks}" Checked="ACheck_Checked" Unchecked="ACheck_Unchecked"/>
-                        <UniformGrid Grid.Column="3" Grid.Row="0" Margin="0,15,0,0" Columns="3" IsEnabled="{Binding Source={x:Static properties:Settings.Default}, Path=notifyA, Mode=TwoWay}" IsEnabledChanged="UniformGrid_IsEnabledChanged">
+                        <UniformGrid Grid.Column="3" MaxHeight="25" Grid.Row="0" Margin="0,20,0,0" Columns="3" IsEnabled="{Binding Source={x:Static properties:Settings.Default}, Path=notifyA, Mode=TwoWay}" IsEnabledChanged="UniformGrid_IsEnabledChanged">
                             <CheckBox x:Name="AARR" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=AARR, Mode=TwoWay}" Checked="FilterCheckBoxOpacityUp" Unchecked="FilterCheckBoxOpacityDown" Opacity="0.35">
                                 <CheckBox.Template>
                                     <ControlTemplate>
@@ -105,7 +105,7 @@
                             </CheckBox>
                         </UniformGrid>
                         <CheckBox x:Name="BCheck" VerticalAlignment="Top" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=notifyB, Mode=TwoWay}" Grid.Column="5" Grid.Row="0" Content="{x:Static properties:Resources.FormBRanks}" Checked="BCheck_Checked" Unchecked="BCheck_Unchecked"/>
-                        <UniformGrid Grid.Column="5" Grid.Row="0" Margin="0,15,0,0" Columns="3" IsEnabled="{Binding Source={x:Static properties:Settings.Default}, Path=notifyB, Mode=TwoWay}" IsEnabledChanged="UniformGrid_IsEnabledChanged">
+                        <UniformGrid Grid.Column="5" MaxHeight="25" Grid.Row="0" Margin="0,20,0,0" Columns="3" IsEnabled="{Binding Source={x:Static properties:Settings.Default}, Path=notifyB, Mode=TwoWay}" IsEnabledChanged="UniformGrid_IsEnabledChanged">
                             <CheckBox x:Name="BARR" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=BARR, Mode=TwoWay}" Checked="FilterCheckBoxOpacityUp" Unchecked="FilterCheckBoxOpacityDown" Opacity="0.35">
                                 <CheckBox.Template>
                                     <ControlTemplate>
@@ -134,7 +134,8 @@
                                 </CheckBox.Template>
                             </CheckBox>
                         </UniformGrid>
-                        <CheckBox Grid.Column="6" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Top" Content="{x:Static properties:Resources.FormDutyRoulette}" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=notifyDutyRoulette, Mode=TwoWay}"/>
+                        <CheckBox Grid.Column="6" TextBlock.LineStackingStrategy="BlockLineHeight" TextBlock.LineHeight="13" Grid.Row="0" VerticalAlignment="Top" Content="{x:Static properties:Resources.FormSubscribeToOtherWorlds}" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=NotificationsFromOtherWorlds, Mode=TwoWay}"/>
+                        <CheckBox Grid.Column="6" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Bottom" Content="{x:Static properties:Resources.FormDutyRoulette}" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=notifyDutyRoulette, Mode=TwoWay}"/>
                     </Grid>
                 </GroupBox>
             </TabItem>

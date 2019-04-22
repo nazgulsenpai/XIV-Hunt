@@ -442,4 +442,8 @@ game-versions.</value>
   <data name="LanguageSelectorTitle" xml:space="preserve">
     <value>{0} Language Selector</value>
   </data>
+  <data name="FormSubscribeToOtherWorlds" xml:space="preserve">
+    <value>Receive reports from
+other worlds</value>
+  </data>
 </root>

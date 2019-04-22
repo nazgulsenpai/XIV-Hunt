@@ -12,6 +12,9 @@ using System.Windows.Documents;
 using Splat;
 using XIVAPI;
 using System.Threading;
+using System.ComponentModel;
+using System.Collections.Specialized;
+using System.Collections;
 
 namespace FFXIV_GameSense
 {
@@ -51,7 +54,7 @@ namespace FFXIV_GameSense
         };
         internal List<Hunt> Hunts = new List<Hunt>();
         private static List<FATEReport> FATEs = GameResources.GetFates().Select(x => new FATEReport(x)).ToList();
-        private static List<uint> HuntsPutInChat = new List<uint>();
+        private static HashSet<uint> HuntsPutInChat = new HashSet<uint>();
         private static readonly uint[] DCZones = new uint[] { 630, 656, 732, 763, 795, 827 };
         private static HuntsHubConnection hubConnection;
         internal static HttpClient Http { get; private set; } = new HttpClient();
@@ -176,7 +179,7 @@ namespace FFXIV_GameSense
                     postpend = fate.Progress + "%";
                 else
                     postpend = string.Format(Resources.FATEPrcTimeRemaining, fate.Progress, (int)fate.TimeRemaining.TotalMinutes, fate.TimeRemaining.Seconds.ToString("D2"));
-                cm = ChatMessage.MakePosChatMessage(string.Format(Resources.FATEMsg, FATEs[idx].Name()), fate.ZoneID, fate.PosX, fate.PosY, " " + postpend);
+                cm = ChatMessage.MakePosChatMessage(string.Format(GetWorldPrepend(fate.WorldId) + Resources.FATEMsg, FATEs[idx].Name()), fate.ZoneID, fate.PosX, fate.PosY, " " + postpend);
                 _ = Program.mem.WriteChatMessage(cm);
                 CheckAndPlaySound(HuntRank.FATE);
                 FATEs[idx].lastPutInChat = Program.mem.GetServerUtcTime();
@@ -186,6 +189,13 @@ namespace FFXIV_GameSense
                 return true;
             }
             return false;
+        }
+
+        private string GetWorldPrepend(ushort wid)
+        {
+            if (Settings.Default.NotificationsFromOtherWorlds)
+                return $"[{GameResources.GetWorldName(wid)}] ";
+            return string.Empty;
         }
 
         internal async Task LastKnownInfoForHunt(ushort id)
@@ -299,7 +309,7 @@ namespace FFXIV_GameSense
             try
             {
                 if (hubConnection.Connected && Joined)
-                    await hubConnection.Connection.InvokeAsync(nameof(LeaveDCZone));
+                    await hubConnection.Connection.InvokeAsync(nameof(LeaveDCZone));//TODO: fix as it may have been disposed
             }
             catch (Exception e) { LogHost.Default.WarnException(nameof(LeaveDCZone), e); }
         }
@@ -385,7 +395,7 @@ namespace FFXIV_GameSense
         {
             //Get first ID for the FATE with this name
             id = GameResources.GetFateId(GameResources.GetFATEInfo(id)?.Name);
-            return Settings.Default.FATEs.Contains(id.ToString());
+            return Settings.Default.FATEs.Contains(id);
         }
 
         private async Task JoinServerGroup()
@@ -395,7 +405,7 @@ namespace FFXIV_GameSense
             Joining = true;
             w1.HuntConnectionTextBlock.Dispatcher.Invoke(() => w1.HuntConnectionTextBlock.Text = Resources.FormReadingSID);
             ushort sid = Program.mem.GetWorldId();
-            Reporter r = new Reporter { WorldID = sid, Name = Program.mem.GetSelfCombatant().Name, Version = Program.AssemblyName.Version };
+            Reporter r = new Reporter(sid, sid, Program.mem.GetSelfCombatant().Name, Hunts.AsReadOnly(), hubConnection.Connection);
             LogHost.Default.Info("Joining " + GameResources.GetWorldName(sid));
             JoinGroupResult result = await hubConnection.Connection.InvokeAsync<JoinGroupResult>("JoinGroup", r);
             if (result == JoinGroupResult.Denied)
@@ -407,10 +417,10 @@ namespace FFXIV_GameSense
                     link.RequestNavigate += UI.LogInForm.Link_RequestNavigate;
                     w1.HuntConnectionTextBlock.Inlines.Add(link);
                 });
-            else if(result == JoinGroupResult.Locked)
+            else if (result == JoinGroupResult.Locked)
                 w1.HuntConnectionTextBlock.Dispatcher.Invoke(() => w1.HuntConnectionTextBlock.Text = string.Format(Resources.FormJoinLocked, Program.AssemblyName.Name));
             Joining = false;
-            Joined = true;
+            Joined = true;//result != JoinGroupResult.Denied
             lastJoined = sid;
             foreach (Hunt h in Hunts)
                 h.WorldId = sid;
@@ -425,42 +435,30 @@ namespace FFXIV_GameSense
         {
             if (Settings.Default.NoAnnouncementsInContent && Program.mem.GetCurrentContentFinderCondition() > 0)
                 return false;
-            if ((hunt.IsARR() && hunt.Rank == HuntRank.B && Settings.Default.BARR && Settings.Default.notifyB)
-                || (hunt.IsARR() && hunt.Rank == HuntRank.A && Settings.Default.AARR && Settings.Default.notifyA)
-                || (hunt.IsARR() && hunt.Rank == HuntRank.S && Settings.Default.SARR && Settings.Default.notifyS)
-                || (hunt.IsHW() && hunt.Rank == HuntRank.B && Settings.Default.BHW && Settings.Default.notifyB)
-                || (hunt.IsHW() && hunt.Rank == HuntRank.A && Settings.Default.AHW && Settings.Default.notifyA)
-                || (hunt.IsHW() && hunt.Rank == HuntRank.S && Settings.Default.SHW && Settings.Default.notifyS)
-                || (hunt.IsSB() && hunt.Rank == HuntRank.B && Settings.Default.BSB && Settings.Default.notifyB)
-                || (hunt.IsSB() && hunt.Rank == HuntRank.A && Settings.Default.ASB && Settings.Default.notifyA)
-                || (hunt.IsSB() && hunt.Rank == HuntRank.S && Settings.Default.SSB && Settings.Default.notifyS)
-                )
+            int idx = Hunts.IndexOf(hunt);
+            ChatMessage cm = new ChatMessage();
+            if (Settings.Default.OncePerHunt ? !HuntsPutInChat.Contains(hunt.OccurrenceID) : Hunts[idx].lastPutInChat < Program.mem.GetServerUtcTime().AddMinutes(-Settings.Default.HuntInterval) && hunt.LastAlive /*&& hunts[idx].lastReportedDead < Program.mem.GetServerUtcTime().AddSeconds(-15)*/)
             {
-                int idx = Hunts.IndexOf(hunt);
-                ChatMessage cm = new ChatMessage();
-                if (Settings.Default.OncePerHunt ? !HuntsPutInChat.Contains(hunt.OccurrenceID) : Hunts[idx].lastPutInChat < Program.mem.GetServerUtcTime().AddMinutes(-Settings.Default.HuntInterval) && hunt.LastAlive /*&& hunts[idx].lastReportedDead < Program.mem.GetServerUtcTime().AddSeconds(-15)*/)
+                cm = ChatMessage.MakePosChatMessage(GetWorldPrepend(hunt.WorldId) + string.Format(Resources.HuntMsg, hunt.Rank.ToString(), hunt.Name), GetZoneId(hunt.Id), hunt.LastX, hunt.LastY);
+                if (cm != null)
                 {
-                    cm = ChatMessage.MakePosChatMessage(string.Format(Resources.HuntMsg, hunt.Rank.ToString(), hunt.Name), GetZoneId(hunt.Id), hunt.LastX, hunt.LastY);
-                    if (cm != null)
-                    {
-                        _ = Program.mem.WriteChatMessage(cm);
-                        CheckAndPlaySound(hunt.Rank);
-                        Hunts[idx] = hunt;
-                        HuntsPutInChat.Add(hunt.OccurrenceID);
-                        Hunts[idx].lastPutInChat = Program.mem.GetServerUtcTime();
-                        return true;
-                    }
+                    _ = Program.mem.WriteChatMessage(cm);
+                    CheckAndPlaySound(hunt.Rank);
+                    Hunts[idx] = hunt;
+                    HuntsPutInChat.Add(hunt.OccurrenceID);
+                    Hunts[idx].lastPutInChat = Program.mem.GetServerUtcTime();
+                    return true;
                 }
-                else if (Hunts[idx].lastReportedDead < ServerTimeUtc.AddSeconds(-12) && !hunt.LastAlive)
+            }
+            else if (Hunts[idx].lastReportedDead < ServerTimeUtc.AddSeconds(-12) && !hunt.LastAlive)
+            {
+                cm.MessageString = string.Format(Resources.HuntMsgKilled, hunt.Rank.ToString(), hunt.Name);
+                if (cm != null)
                 {
-                    cm.MessageString = string.Format(Resources.HuntMsgKilled, hunt.Rank.ToString(), hunt.Name);
-                    if (cm != null)
-                    {
-                        _ = Program.mem.WriteChatMessage(cm);
-                        Hunts[idx] = hunt;
-                        Hunts[idx].lastReportedDead = Program.mem.GetServerUtcTime();
-                        return true;
-                    }
+                    _ = Program.mem.WriteChatMessage(cm);
+                    Hunts[idx] = hunt;
+                    Hunts[idx].lastReportedDead = Program.mem.GetServerUtcTime();
+                    return true;
                 }
             }
             return false;
@@ -589,11 +587,11 @@ namespace FFXIV_GameSense
             LastReported = DateTime.MinValue;
         }
 
-        internal bool IsARR() => Id < 3000;
+        internal bool IsARR => Id < 3000;
 
-        internal bool IsHW() => Id > 3000 && Id < 5000;
+        internal bool IsHW => Id > 3000 && Id < 5000;
 
-        internal bool IsSB() => Id > 5000 && Id < 7000;
+        internal bool IsSB => Id > 5000 && Id < 7000;
 
         public override bool Equals(object obj)
         {
@@ -611,9 +609,85 @@ namespace FFXIV_GameSense
 
     class Reporter
     {
-        public ushort WorldID { get; set; }
-        public string Name { get; set; }
-        public Version Version { get; set; }
+        public ushort HomeWorldID { get; private set; }
+        public ushort CurrentWorldID { get; private set; }
+        public string Name { get; private set; }
+        public Version Version = Program.AssemblyName.Version;
+        public ObservableHashSet<ushort> SubscribedHunts => Settings.Default.Hunts;
+        public ObservableHashSet<ushort> SubscribedFATEs => Settings.Default.FATEs;
+        public bool SubscribedToOtherWorlds => Settings.Default.NotificationsFromOtherWorlds;
+        private readonly IReadOnlyList<Hunt> Hunts;
+        private readonly HubConnection hubConnection;
+
+        public Reporter(ushort hwid, ushort cwid, string name, IReadOnlyList<Hunt> hunts, in HubConnection connection)
+        {
+            HomeWorldID = hwid;
+            CurrentWorldID = cwid;
+            Name = name;
+            Hunts = hunts;
+            hubConnection = connection;
+            RefreshSubscribedHuntIDs();
+            Settings.Default.PropertyChanged += ReporterSettingsPropertyChanged;
+            SubscribedHunts.CollectionChanged += SubscribedHunt_CollectionChanged;
+            SubscribedFATEs.CollectionChanged += SubscribedFATEs_CollectionChanged;
+        }
+
+        private void ReporterSettingsPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            Debug.WriteLine($"[{nameof(Reporter)}] {nameof(ReporterSettingsPropertyChanged)}:{e.PropertyName}");
+            if (e.PropertyName == nameof(Settings.Default.NotificationsFromOtherWorlds))
+            {
+                hubConnection.SendAsync("SetSubscribedToOtherWorlds", Settings.Default.NotificationsFromOtherWorlds);
+                if (Settings.Default.NotificationsFromOtherWorlds)
+                    LogHost.Default.Info($"[{nameof(Reporter)}] Subscribed to other worlds on this datacenter");
+                else
+                    LogHost.Default.Info($"[{nameof(Reporter)}] Unsubscribed from other worlds");
+            }
+            else if (e.PropertyName.StartsWith("notify") && e.PropertyName.Length == 7 || (e.PropertyName.All(x => char.IsUpper(x)) && e.PropertyName.Length < 5))
+                RefreshSubscribedHuntIDs();
+        }
+
+        private void SubscribedHunt_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            Debug.WriteLine($"[{nameof(Reporter)}] {nameof(SubscribedHunt_CollectionChanged)}:{e.Action.ToString()}");
+            hubConnection.SendAsync("SetSubscription", new SubscriptionUpdate(nameof(Hunt), e.Action, e.NewItems?.Count > 0 ? e.NewItems : e.OldItems));
+            LogInfo(nameof(SubscribedHunt_CollectionChanged), e);
+        }
+
+        private void SubscribedFATEs_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            Debug.WriteLine($"[{nameof(Reporter)}] {nameof(SubscribedFATEs_CollectionChanged)}:{e.Action.ToString()}");
+            hubConnection.SendAsync("SetSubscription", new SubscriptionUpdate(nameof(FATEReport), e.Action, e.NewItems?.Count > 0 ? e.NewItems : e.OldItems));
+            LogInfo(nameof(SubscribedFATEs_CollectionChanged), e);
+        }
+
+        private void LogInfo(string methodName, NotifyCollectionChangedEventArgs e)
+        {
+            string info = $"{methodName}:{e.Action.ToString()}{Environment.NewLine}";
+            foreach (object i in e.NewItems ?? new List<object>())
+                info += "+" + i + ((e.NewItems.IndexOf(i) + 1) % 3 == 0 ? Environment.NewLine : " ");
+            foreach (object i in e.OldItems ?? new List<object>())
+                info += "-" + i + ((e.OldItems.IndexOf(i) + 1) % 3 == 0 ? Environment.NewLine : " ");
+            LogHost.Default.Info(info);
+        }
+
+        //I threw up in my mouth a little bit
+        private void RefreshSubscribedHuntIDs()
+        {
+            Stopwatch s = new Stopwatch();
+            s.Start();
+            HashSet<ushort> newSubscribedHuntIDsHS = new HashSet<ushort>();
+            if (Settings.Default.notifyS)
+                newSubscribedHuntIDsHS.AddRange(Hunts.Where(x => x.Rank == HuntRank.S && ((x.IsARR && Settings.Default.SARR) || x.IsHW && Settings.Default.SHW || x.IsSB && Settings.Default.SSB)).Select(x => x.Id));
+            if (Settings.Default.notifyA)
+                newSubscribedHuntIDsHS.AddRange(Hunts.Where(x => x.Rank == HuntRank.A && ((x.IsARR && Settings.Default.AARR) || x.IsHW && Settings.Default.AHW || x.IsSB && Settings.Default.ASB)).Select(x => x.Id));
+            if (Settings.Default.notifyB)
+                newSubscribedHuntIDsHS.AddRange(Hunts.Where(x => x.Rank == HuntRank.B && ((x.IsARR && Settings.Default.BARR) || x.IsHW && Settings.Default.BHW || x.IsSB && Settings.Default.BSB)).Select(x => x.Id));
+            SubscribedHunts.RemoveRange(SubscribedHunts.Except(newSubscribedHuntIDsHS));
+            SubscribedHunts.AddRange(newSubscribedHuntIDsHS);
+            s.Stop();
+            Debug.WriteLine(nameof(RefreshSubscribedHuntIDs) + ": " + s.ElapsedTicks);
+        }
     }
 
     class FATEReport : FATE
@@ -671,5 +745,19 @@ namespace FFXIV_GameSense
         Denied,
         Joined,
         Locked
+    }
+
+    class SubscriptionUpdate
+    {
+        public string Type { get; private set; }
+        public NotifyCollectionChangedAction ChangeAction { get; private set; }
+        public IEnumerable Items { get; private set; }
+        
+        public SubscriptionUpdate(string t, NotifyCollectionChangedAction changedAction, IEnumerable items)
+        {
+            Type = t;
+            ChangeAction = changedAction;
+            Items = items;
+        }
     }
 }

@@ -105,7 +105,7 @@
       <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Configuration.Binder.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Binder.2.2.4\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.2.2.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
@@ -360,6 +360,7 @@
     <Compile Include="MML\ValidationSettings.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="FFXIVGameSense.cs" />
+    <Compile Include="ObservableHashSet.cs" />
     <Compile Include="Overlay\EntityOverlayControl.xaml.cs">
       <DependentUpon>EntityOverlayControl.xaml</DependentUpon>
     </Compile>
@@ -381,6 +382,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="RadarOverlay.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="SoundPlayer.cs" />
     <Compile Include="UI\AlarmButton.xaml.cs">
       <DependentUpon>AlarmButton.xaml</DependentUpon>
@@ -426,6 +428,7 @@
     <None Include="Properties\Settings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Resources\BNpcName.ko.csv" />
     <None Include="Resources\BNpcName.zh.csv" />
