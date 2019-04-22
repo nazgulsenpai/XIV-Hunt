@@ -30,19 +30,19 @@ namespace FFXIV_GameSense.UI
         {
             get
             {
-                return Settings.Default.FATEs.Contains(ID.ToString());
+                return Settings.Default.FATEs.Contains(ID);
             }
             set
             {
                 if (!value)
-                    while (Settings.Default.FATEs.Contains(ID.ToString()))
+                    while (Settings.Default.FATEs.Contains(ID))
                     {
-                        Settings.Default.FATEs.Remove(ID.ToString());
+                        Settings.Default.FATEs.Remove(ID);
                         OnPropertyChanged(nameof(Announce));
                     }
-                else if(!Settings.Default.FATEs.Contains(ID.ToString()))
+                else if(!Settings.Default.FATEs.Contains(ID))
                 {
-                    Settings.Default.FATEs.Add(ID.ToString());
+                    Settings.Default.FATEs.Add(ID);
                     OnPropertyChanged(nameof(Announce));
                 }
             }

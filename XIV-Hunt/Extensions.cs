@@ -155,6 +155,22 @@ namespace FFXIV_GameSense
             return index;
         }
 
+        public static bool AddRange<T>(this HashSet<T> @this, IEnumerable<T> items)
+        {
+            bool allAdded = true;
+            foreach (T item in items)
+                allAdded &= @this.Add(item);
+            return allAdded;
+        }
+
+        public static bool RemoveRange<T>(this HashSet<T> @this, IEnumerable<T> items)
+        {
+            bool allRemoved = true;
+            foreach (T item in items)
+                allRemoved &= @this.Remove(item);
+            return allRemoved;
+        }
+
         public static void MakeWindowUntransparent(this Window wnd)
         {
             if (!wnd.IsInitialized)

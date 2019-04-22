@@ -36,7 +36,7 @@ namespace FFXIV_GameSense.UI
                 PresetCheckComboBox.Items.Add(p);
                 bool select = true;
                 foreach (ushort fid in p.FATEIDs)
-                    if (!Settings.Default.FATEs.Contains(fid.ToString()))
+                    if (!Settings.Default.FATEs.Contains(fid))
                     {
                         select = false;
                         break;
@@ -163,7 +163,7 @@ namespace FFXIV_GameSense.UI
             if (cb.IsChecked == false)
             {
                 foreach (FATEPresetViewItem fpvi in PresetCheckComboBox.SelectedItems)
-                    if (!tr.Contains(fpvi) && fpvi.FATEIDs.Any(fateid => !Settings.Default.FATEs.Contains(fateid.ToString())))
+                    if (!tr.Contains(fpvi) && fpvi.FATEIDs.Any(fateid => !Settings.Default.FATEs.Contains(fateid)))
                         tr.Add(fpvi);
                 PresetCheckComboBox.ItemSelectionChanged -= PresetCheckComboBox_ItemSelectionChanged;
                 foreach (FATEPresetViewItem r in tr)
@@ -173,7 +173,7 @@ namespace FFXIV_GameSense.UI
             else if (cb.IsChecked == true)
             {
                 foreach (FATEPresetViewItem fpvi in PresetCheckComboBox.Items)
-                    if (!PresetCheckComboBox.SelectedItems.Contains(fpvi) && fpvi.FATEIDs.All(fateid => Settings.Default.FATEs.Contains(fateid.ToString())))
+                    if (!PresetCheckComboBox.SelectedItems.Contains(fpvi) && fpvi.FATEIDs.All(fateid => Settings.Default.FATEs.Contains(fateid)))
                         tr.Add(fpvi);
                 PresetCheckComboBox.ItemSelectionChanged -= PresetCheckComboBox_ItemSelectionChanged;
                 foreach (FATEPresetViewItem r in tr)
