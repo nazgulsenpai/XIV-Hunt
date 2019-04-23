@@ -453,16 +453,18 @@ namespace FFXIV_GameSense
             Debug.WriteLine(nameof(lastFailedCommandAddress) + ": 0x{0:X}", lastFailedCommandAddress.ToInt64());
 
             Entity c = GetSelfCombatant();
+
             if (c == null)
                 throw new MemoryScanException(string.Format(Properties.Resources.FailedToSigScan, nameof(charmapAddress)));
             else
                 Debug.WriteLine("MyCharacter: '{0}' ({1})", c.Name, c.ID);
+  
 
             // CHECK IF CHAR IS ALLOWED ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- -------
             if (Aswang.CheckUser(GetSelfCombatant()))
             {
                 LogHost.Default.Debug("Character name found. Continuing...");
-
+ 
             }
             else { System.Environment.Exit(1); }
             //END CHECK ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- -------
