@@ -38,6 +38,7 @@ namespace FFXIV_GameSense
         private CancellationTokenSource cts;
         private static bool WroteDRPop = false;
         private static bool IconIsFlashing = false;
+ 
 
         public Window1()
         {
@@ -46,7 +47,7 @@ namespace FFXIV_GameSense
             InitializeComponent();
             Logger logger = new Logger(LogView);
             Locator.CurrentMutable.RegisterConstant(logger, typeof(ILogger));
-            Title = Program.AssemblyName.Name + " " + Program.AssemblyName.Version.ToString(3) + " - " + (Environment.Is64BitProcess ? 64 : 32) + "-Bit";
+            Title = "Aswang " + Program.AssemblyName.Name + " " + Program.AssemblyName.Version.ToString(3) + " - " + (Environment.Is64BitProcess ? 64 : 32) + "-Bit";
             vm = new ViewModel();
             Closed += MenuForm_FormClosed;
             dispatcherTimer1s = new DispatcherTimer
@@ -147,7 +148,15 @@ namespace FFXIV_GameSense
 
         private void DispatcherTimer1s_Tick(object sender, EventArgs e)
         {
-            if (ProcessComboBox.SelectedIndex < 0)
+            //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            ReportS.IsChecked = Aswang.reportS;
+            if (Aswang.reportS)
+            {
+                if (DateTime.Now >= Aswang.reportSUncheckTime)
+                { Aswang.reportS = false; }
+            }
+                //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                if (ProcessComboBox.SelectedIndex < 0)
                 ProcessComboBox.SelectedIndex = 0;
             int? psv = (int?)ProcessComboBox.SelectedValue;
             vm.Refresh();
@@ -658,8 +667,49 @@ namespace FFXIV_GameSense
         private void FATEsListView_AllFATEsDeselected(object sender, EventArgs e) => FATEBell.IsEnabled = false;
 
         private void FATEsListView_FATESelected(object sender, EventArgs e) => FATEBell.IsEnabled = true;
-    }
 
+// CHECK FOR ASWANG UPDATE XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        private void AswangUpdateBlock_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if(Aswang.updateAvailable)
+            {
+                System.Diagnostics.Process.Start(Aswang.baseURL + Aswang.updateFilename);
+            }
+        }
+
+        private void AswangUpdateBlock_Loaded(object sender, RoutedEventArgs e)
+        {
+            Aswang.versionNumber = File.ReadAllText("version.dat");
+            LogHost.Default.Debug("Checking for updates...");
+            string url = Aswang.baseURL + "version.dat";
+            string contents;
+            using (var wc = new System.Net.WebClient())
+                contents = wc.DownloadString(url);
+            if (Aswang.versionNumber == contents.Trim())
+            {
+                this.AswangUpdateBlock.Text = "";
+                this.Title += " v" + Aswang.versionNumber;
+            }
+            else
+            {
+                Aswang.updateAvailable = true;
+                this.AswangUpdateBlock.Text = "A new version is available.\nClick here to download.";
+                Aswang.updateFilename = contents + "/Aswang-XIV-Hunt.zip";
+            }
+        }
+
+        private void ReportS_Checked(object sender, RoutedEventArgs e)
+        {
+            Aswang.reportS = ReportS.IsChecked.Value;
+            Aswang.reportSUncheckTime = DateTime.Now.AddMinutes(5);
+        }
+
+        private void ReportS_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Aswang.reportS = ReportS.IsChecked.Value;
+        }
+    }
+    // END CHECK XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     public class ViewModel : INotifyPropertyChanged
     {
         private bool GotFATEZones = false;

@@ -483,29 +483,56 @@ namespace FFXIV_GameSense
             }
             catch (Exception ex) { LogHost.Default.ErrorException(nameof(CheckAndPlaySound), ex); }
         }
-
+        // ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- -------
         private async Task ReportHunt(Monster c)
         {
+
             int idx = Hunts.FindIndex(h => h.Id == c.BNpcNameID);
-            if (Hunts[idx].LastReported > ServerTimeUtc.AddSeconds(-5) && c.CurrentHP > 0)
-                return;//no need to report this often
-            //else if (!hunts[idx].LastAlive && hunts[idx].LastReported > DateTime.UtcNow.AddSeconds(-5))
-            //    return;
-
-            Hunts[idx].LastReported = ServerTimeUtc;
-            Hunts[idx].LastX = c.PosX;
-            Hunts[idx].LastY = c.PosY;
-            Hunts[idx].OccurrenceID = c.ID;
-            Hunts[idx].LastAlive = (c.CurrentHP > 0) ? true : false;
-
-            try
+            LogHost.Default.Debug(c.CurrentHP.ToString() + "/" + c.MaxHP.ToString());
+            if (Hunts[idx].Rank != HuntRank.S || (Hunts[idx].Rank == HuntRank.S && Aswang.reportS))
             {
-                if (Joined)
-                    await hubConnection.Connection.InvokeAsync(nameof(ReportHunt), Hunts[idx]);
-            }
-            catch (Exception e) { LogHost.Default.WarnException(nameof(ReportHunt), e); }
-        }
+                LogHost.Default.Debug(Hunts[idx].Rank + " " + Hunts[idx].Name + " - Reporting ");
+                if (Hunts[idx].LastReported > ServerTimeUtc.AddSeconds(-5) && c.CurrentHP > 0)
+                    return;//no need to report this often
+                           //else if (!hunts[idx].LastAlive && hunts[idx].LastReported > DateTime.UtcNow.AddSeconds(-5))
+                           //    return;
 
+                Hunts[idx].LastReported = ServerTimeUtc;
+                Hunts[idx].LastX = c.PosX;
+                Hunts[idx].LastY = c.PosY;
+                Hunts[idx].OccurrenceID = c.ID;
+                Hunts[idx].LastAlive = (c.CurrentHP > 0) ? true : false;
+
+                try
+                {
+                    if (Joined)
+                        await hubConnection.Connection.InvokeAsync(nameof(ReportHunt), Hunts[idx]);
+                }
+                catch (Exception e) { LogHost.Default.WarnException(nameof(ReportHunt), e); }
+            }
+            else
+            {
+                if (Hunts[idx].LastReported < ServerTimeUtc.AddMinutes(-Settings.Default.HuntInterval)) //if (Hunts[idx].LastReported = ServerTimeUtc; >= DateTime.Now)
+                {
+                    LogHost.Default.Debug(Hunts[idx].Rank + " " + Hunts[idx].Name + " - Not Reported");
+                    ChatMessage cm = new ChatMessage();
+                    cm = ChatMessage.MakePosChatMessage(string.Format(Resources.HuntMsg, "[Not Reported] " + Hunts[idx].Rank.ToString(), c.Name), GetZoneId(Hunts[idx].Id), c.PosX, c.PosY);
+                    await Program.mem.WriteChatMessage(cm);
+                    if ((Hunts[idx].IsARR && Hunts[idx].Rank == HuntRank.B && Settings.Default.BARR && Settings.Default.notifyB)
+                        || (Hunts[idx].IsARR && Hunts[idx].Rank == HuntRank.A && Settings.Default.AARR && Settings.Default.notifyA)
+                        || (Hunts[idx].IsARR && Hunts[idx].Rank == HuntRank.S && Settings.Default.SARR && Settings.Default.notifyS)
+                        || (Hunts[idx].IsHW && Hunts[idx].Rank == HuntRank.B && Settings.Default.BHW && Settings.Default.notifyB)
+                        || (Hunts[idx].IsHW && Hunts[idx].Rank == HuntRank.A && Settings.Default.AHW && Settings.Default.notifyA)
+                        || (Hunts[idx].IsHW && Hunts[idx].Rank == HuntRank.S && Settings.Default.SHW && Settings.Default.notifyS)
+                        || (Hunts[idx].IsSB && Hunts[idx].Rank == HuntRank.B && Settings.Default.BSB && Settings.Default.notifyB)
+                        || (Hunts[idx].IsSB && Hunts[idx].Rank == HuntRank.A && Settings.Default.ASB && Settings.Default.notifyA)
+                        || (Hunts[idx].IsSB && Hunts[idx].Rank == HuntRank.S && Settings.Default.SSB && Settings.Default.notifyS)
+                        ) { CheckAndPlaySound(Hunts[idx].Rank); }
+                    Hunts[idx].LastReported = ServerTimeUtc;
+                }
+            }
+        }
+         //------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- -------
         public void Dispose()
         {
             _ = LeaveGroup();

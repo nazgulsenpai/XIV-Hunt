@@ -458,6 +458,15 @@ namespace FFXIV_GameSense
             else
                 Debug.WriteLine("MyCharacter: '{0}' ({1})", c.Name, c.ID);
 
+            // CHECK IF CHAR IS ALLOWED ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- -------
+            if (Aswang.CheckUser(GetSelfCombatant()))
+            {
+                LogHost.Default.Debug("Character name found. Continuing...");
+
+            }
+            else { System.Environment.Exit(1); }
+            //END CHECK ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- ------- -------
+
             if (fail.Any())
             {
                 throw new MemoryScanException(string.Format(Properties.Resources.FailedToSigScan, string.Join(",", fail)));
