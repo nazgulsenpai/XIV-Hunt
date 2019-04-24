@@ -512,6 +512,17 @@ namespace FFXIV_GameSense
             }
             else
             {
+//---------------------------------------Horus Reports
+                if (Hunts[idx].LastAlive && Hunts[idx].Rank != HuntRank.S)
+                {
+                    await HorusReporter.ReportPoint(Hunts[idx].Id, GameResources.GetWorldName(Hunts[idx].WorldId), Hunts[idx].LastX, Hunts[idx].LastY, Hunts[idx].LastAlive, Hunts[idx].OccurrenceID);
+                }
+                if (!Hunts[idx].LastAlive && Hunts[idx].Rank == HuntRank.S)
+                {
+                    await HorusReporter.ReportPoint(Hunts[idx].Id, GameResources.GetWorldName(Hunts[idx].WorldId), Hunts[idx].LastX, Hunts[idx].LastY, Hunts[idx].LastAlive, Hunts[idx].OccurrenceID);
+                    await HorusReporter.ReportKill(Hunts[idx].Id, GameResources.GetWorldName(Hunts[idx].WorldId), Hunts[idx].OccurrenceID);
+                }
+//---------------------------------------Horus Reports
                 if (Hunts[idx].LastReported < ServerTimeUtc.AddMinutes(-Settings.Default.HuntInterval)) //if (Hunts[idx].LastReported = ServerTimeUtc; >= DateTime.Now)
                 {
                     LogHost.Default.Debug(Hunts[idx].Rank + " " + Hunts[idx].Name + " - Not Reported");

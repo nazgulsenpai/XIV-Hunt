@@ -89,5 +89,15 @@ namespace FFXIV_GameSense
             if(SoundPlayer.WaveDevice != null)
                 SoundPlayer.WaveDevice.Volume = (float)e.NewValue;
         }
+
+        private void HorusToken_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Settings.Default.HorusToken = HorusToken.Text;
+        }
+
+        private void HorusHuntsToken_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            System.Diagnostics.Process.Start(HorusReporter.TokenURL);
+        }
     }
 }

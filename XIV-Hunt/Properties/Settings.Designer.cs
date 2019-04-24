@@ -697,5 +697,17 @@ namespace FFXIV_GameSense.Properties {
                 this["NotificationsFromOtherWorlds"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string HorusToken {
+            get {
+                return ((string)(this["HorusToken"]));
+            }
+            set {
+                this["HorusToken"] = value;
+            }
+        }
     }
 }

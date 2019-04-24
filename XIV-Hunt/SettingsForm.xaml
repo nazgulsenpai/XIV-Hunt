@@ -5,40 +5,91 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:properties="clr-namespace:FFXIV_GameSense.Properties"
         mc:Ignorable="d"
-        Title="{x:Static properties:Resources.SettingsForm}" Height="545" Width="365" ResizeMode="NoResize">
+        Title="{x:Static properties:Resources.SettingsForm}" Height="592.038" Width="386.086" ResizeMode="NoResize">
     <Grid RenderTransformOrigin="0.496,0.426">
-        <CheckBox x:Name="MinimizeToTrayCB" Content="{x:Static properties:Resources.FormMinimizeToTray}" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=MinimizeToTray, Mode=TwoWay}" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto"/>
-        <CheckBox x:Name="StartMinimizedCB" Content="{x:Static properties:Resources.StartMinimized}" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=StartMinimized, Mode=TwoWay}" Margin="10,31,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto"/>
-        <CheckBox x:Name="StartWithWindowsCB" Content="{x:Static properties:Resources.StartWithWindows}" Margin="10,52,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto"/>
-        <CheckBox x:Name="TrackFATEAfterQuery" Content="{x:Static properties:Resources.FormTrackFATEAfterQuery}" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=TrackFATEAfterQuery, Mode=TwoWay}" Margin="10,73,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto"/>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF333333" Offset="0"/>
+                <GradientStop Color="#FF222222" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <CheckBox x:Name="MinimizeToTrayCB" Content="{x:Static properties:Resources.FormMinimizeToTray}" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=MinimizeToTray, Mode=TwoWay}" Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Foreground="#FF999999" Background="#FF777777"/>
+        <CheckBox x:Name="StartMinimizedCB" Content="{x:Static properties:Resources.StartMinimized}" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=StartMinimized, Mode=TwoWay}" Margin="10,31,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Foreground="#FF999999" Background="#FF777777"/>
+        <CheckBox x:Name="StartWithWindowsCB" Content="{x:Static properties:Resources.StartWithWindows}" Margin="10,52,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Foreground="#FF999999" Background="#FF777777"/>
+        <CheckBox x:Name="TrackFATEAfterQuery" Content="{x:Static properties:Resources.FormTrackFATEAfterQuery}" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=TrackFATEAfterQuery, Mode=TwoWay}" Margin="10,73,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Foreground="#FF999999" Background="#FF777777"/>
         <Separator Margin="0,264,0,0" Height="9" VerticalAlignment="Top"/>
-        <TextBlock Margin="10,273,10,0" Height="15" VerticalAlignment="Top" Text="{x:Static properties:Resources.FormMinutesBetweenHuntAnnouncements}" />
-        <TextBox Name="HuntInterval" VerticalContentAlignment="Center" FontSize="16" TextWrapping="Wrap" Text="{Binding Source={x:Static properties:Settings.Default}, Path=HuntInterval, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=N2}" IsReadOnly="{Binding ElementName=OncePerHuntCheckBox, Path=IsChecked}" Margin="10,290,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="83"/>
-        <CheckBox x:Name="OncePerHuntCheckBox" Content="{x:Static properties:Resources.FormAnnounceOncePerHunt}" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=OncePerHunt, Mode=TwoWay}" Margin="98,288,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="224" Height="Auto"/>
-        <CheckBox x:Name="ForgetOnZoneChangeCheckBox" Content="{x:Static properties:Resources.FormForgetOnZoneChange}" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=ForgetOnZoneChange, Mode=TwoWay}" IsEnabled="{Binding ElementName=OncePerHuntCheckBox, Path=IsChecked, TargetNullValue=false}" Margin="98,305,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="224" Height="Auto"/>
-        <TextBlock Margin="10,326,10,0" Height="16" VerticalAlignment="Top" Text="{x:Static properties:Resources.FormMinutesBetweenFateAnnouncements}"></TextBlock>
-        <TextBox Name="FATEInterval" VerticalContentAlignment="Center" FontSize="16" TextWrapping="Wrap" Text="{Binding Source={x:Static properties:Settings.Default}, Path=FATEInterval, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=N2}" Margin="10,344,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="83"/>
-        <CheckBox x:Name="NoAnnouncementsInContentCB" Content="{x:Static properties:Resources.FormNoAnnouncementsInContent}" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=NoAnnouncementsInContent, Mode=TwoWay}" Margin="10,94,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto"/>
-        <TextBlock Margin="10,419,10,0" Height="16" VerticalAlignment="Top" Text="{x:Static properties:Resources.FormDoNotAnnounceFateIfMinutesRemaining}"/>
-        <TextBox Name="FATEMinimumMinutesRemaining" VerticalContentAlignment="Center" FontSize="16" TextWrapping="Wrap" Text="{Binding Source={x:Static properties:Settings.Default}, Path=FATEMinimumMinutesRemaining, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=N2}" Margin="10,435,0,0" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="83"/>
-        <TextBlock Margin="10,372,10,0" Height="17" VerticalAlignment="Top" Text="{x:Static properties:Resources.FormAnnounceFateEveryPercentage}" />
-        <TextBox Name="FATEPercentInterval" VerticalContentAlignment="Center" FontSize="16" TextWrapping="Wrap" Text="{Binding Source={x:Static properties:Settings.Default}, Path=FATEMinimumPercentInterval, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=N0}" Margin="10,390,0,0" Height="25" VerticalAlignment="Top" TextChanged="FATEPercentInterval_TextChanged" HorizontalAlignment="Left" Width="40" />
-        <TextBlock Margin="55,389,256,0" FontSize="16" Height="25" VerticalAlignment="Top">%</TextBlock>
-        <CheckBox x:Name="FlashTaskbarIconOnDFPopCB" Content="{x:Static properties:Resources.FormFlashTaskbarIconDF}" IsChecked="{Binding FlashTaskbarIconOnDFPop, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" Margin="10,115,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto"/>
-        <CheckBox x:Name="FlashTaskbarIconOnHuntsAndFATEsCB" Content="{x:Static properties:Resources.FormFlashTaskbarIconHuntFate}" IsChecked="{Binding FlashTaskbarIconOnHuntAndFATEs, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" Margin="10,136,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,157,0,0" TextWrapping="Wrap" Text="{x:Static properties:Resources.FormPerformDirectory}" VerticalAlignment="Top"/>
-        <TextBox x:Name="PerformDirectoryTextBox" Height="23" Margin="10,178,42,0" TextWrapping="Wrap" Text="{Binding PerformDirectory, Source={x:Static properties:Settings.Default}}" ToolTip="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Text}" IsReadOnly="True"  PreviewMouseUp="PerformDirectoryTextBox_PreviewMouseUp" VerticalAlignment="Top"/>
+        <TextBlock Margin="10,273,10,0" Height="15" VerticalAlignment="Top" Text="{x:Static properties:Resources.FormMinutesBetweenHuntAnnouncements}" Foreground="#FF999999" />
+        <TextBox Name="HuntInterval" VerticalContentAlignment="Center" FontSize="16" TextWrapping="Wrap" Text="{Binding Source={x:Static properties:Settings.Default}, Path=HuntInterval, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=N2}" IsReadOnly="{Binding ElementName=OncePerHuntCheckBox, Path=IsChecked}" Margin="10,290,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="83" Foreground="#FF999999">
+            <TextBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF222222"/>
+                    <GradientStop Color="#FF333333" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBox.Background>
+        </TextBox>
+        <CheckBox x:Name="OncePerHuntCheckBox" Content="{x:Static properties:Resources.FormAnnounceOncePerHunt}" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=OncePerHunt, Mode=TwoWay}" Margin="98,288,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="224" Height="Auto" Foreground="#FF999999" Background="#FF777777"/>
+        <CheckBox x:Name="ForgetOnZoneChangeCheckBox" Content="{x:Static properties:Resources.FormForgetOnZoneChange}" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=ForgetOnZoneChange, Mode=TwoWay}" IsEnabled="{Binding ElementName=OncePerHuntCheckBox, Path=IsChecked, TargetNullValue=false}" Margin="98,305,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="224" Height="Auto" Foreground="#FF999999" Background="#FF777777"/>
+        <TextBlock Margin="10,326,10,0" Height="16" VerticalAlignment="Top" Text="{x:Static properties:Resources.FormMinutesBetweenFateAnnouncements}" Foreground="#FF999999"></TextBlock>
+        <TextBox Name="FATEInterval" VerticalContentAlignment="Center" FontSize="16" TextWrapping="Wrap" Text="{Binding Source={x:Static properties:Settings.Default}, Path=FATEInterval, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=N2}" Margin="10,344,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="83" Foreground="#FF999999">
+            <TextBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF222222"/>
+                    <GradientStop Color="#FF333333" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBox.Background>
+        </TextBox>
+        <CheckBox x:Name="NoAnnouncementsInContentCB" Content="{x:Static properties:Resources.FormNoAnnouncementsInContent}" IsChecked="{Binding Source={x:Static properties:Settings.Default}, Path=NoAnnouncementsInContent, Mode=TwoWay}" Margin="10,94,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Foreground="#FF999999" Background="#FF777777"/>
+        <TextBlock Margin="10,419,10,0" Height="16" VerticalAlignment="Top" Text="{x:Static properties:Resources.FormDoNotAnnounceFateIfMinutesRemaining}" Foreground="#FF999999"/>
+        <TextBox Name="FATEMinimumMinutesRemaining" VerticalContentAlignment="Center" FontSize="16" TextWrapping="Wrap" Text="{Binding Source={x:Static properties:Settings.Default}, Path=FATEMinimumMinutesRemaining, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=N2}" Margin="10,435,0,0" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="83" Foreground="#FF999999">
+            <TextBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF222222"/>
+                    <GradientStop Color="#FF333333" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBox.Background>
+        </TextBox>
+        <TextBlock Margin="10,372,10,0" Height="17" VerticalAlignment="Top" Text="{x:Static properties:Resources.FormAnnounceFateEveryPercentage}" Foreground="#FF999999" />
+        <TextBox Name="FATEPercentInterval" VerticalContentAlignment="Center" FontSize="16" TextWrapping="Wrap" Text="{Binding Source={x:Static properties:Settings.Default}, Path=FATEMinimumPercentInterval, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,StringFormat=N0}" Margin="10,390,0,0" Height="25" VerticalAlignment="Top" TextChanged="FATEPercentInterval_TextChanged" HorizontalAlignment="Left" Width="40" Foreground="#FF999999" >
+            <TextBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF222222"/>
+                    <GradientStop Color="#FF333333" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBox.Background>
+        </TextBox>
+        <TextBlock Margin="55,389,256,0" FontSize="16" Height="25" VerticalAlignment="Top" Foreground="#FF999999">%</TextBlock>
+        <CheckBox x:Name="FlashTaskbarIconOnDFPopCB" Content="{x:Static properties:Resources.FormFlashTaskbarIconDF}" IsChecked="{Binding FlashTaskbarIconOnDFPop, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" Margin="10,115,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Foreground="#FF999999" Background="#FF777777"/>
+        <CheckBox x:Name="FlashTaskbarIconOnHuntsAndFATEsCB" Content="{x:Static properties:Resources.FormFlashTaskbarIconHuntFate}" IsChecked="{Binding FlashTaskbarIconOnHuntAndFATEs, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" Margin="10,136,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Foreground="#FF999999" Background="#FF777777"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,157,0,0" TextWrapping="Wrap" Text="{x:Static properties:Resources.FormPerformDirectory}" VerticalAlignment="Top" Foreground="#FF999999"/>
+        <TextBox x:Name="PerformDirectoryTextBox" Height="23" Margin="10,178,42,0" TextWrapping="Wrap" Text="{Binding PerformDirectory, Source={x:Static properties:Settings.Default}}" ToolTip="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Text}" IsReadOnly="True"  PreviewMouseUp="PerformDirectoryTextBox_PreviewMouseUp" VerticalAlignment="Top" Foreground="#FF999999">
+            <TextBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF222222"/>
+                    <GradientStop Color="#FF333333" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBox.Background>
+        </TextBox>
         <Image Name="ForgetPerformDirectoryButton" Margin="0,178,19,0" PreviewMouseLeftButtonDown="ForgetPerformDirectoryButton_Click" Height="23" VerticalAlignment="Top" HorizontalAlignment="Right" Width="23" Source="/Resources/Images/DeleteIcon.png"/>
-        <TextBlock Text="{x:Static properties:Resources.SettingsNeedToLoginAsADifferentUser}" Margin="0,483,95,0" VerticalAlignment="Top" Width="Auto" HorizontalAlignment="Right" />
-        <Button Name="LogOutButton" Content="{x:Static properties:Resources.SettingsLogOut}" Margin="266,479,0,-2" Click="LogOutButton_Click" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="83" />
-        <Separator Margin="0,465,0,0" Height="9" VerticalAlignment="Top"/>
-        <TextBlock Text="Volume:" Margin="10,209,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBlock Text="{x:Static properties:Resources.SettingsNeedToLoginAsADifferentUser}" Margin="0,521,125,0" VerticalAlignment="Top" Width="Auto" HorizontalAlignment="Right" Foreground="#FF999999" />
+        <Button Name="LogOutButton" Content="{x:Static properties:Resources.SettingsLogOut}" Margin="266,517,0,0" Click="LogOutButton_Click" Height="25" VerticalAlignment="Top" HorizontalAlignment="Left" Width="83" />
+        <Separator Margin="0,503,0,0" Height="9" VerticalAlignment="Top"/>
+        <TextBlock Text="Volume:" Margin="10,209,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF999999" />
         <Slider Maximum="1" Minimum="0" Margin="58,206,20,0" Value="{Binding Volume, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" Height="24" VerticalAlignment="Top" ValueChanged="Slider_ValueChanged">
             <Slider.ToolTip>
                 <ToolTip Content="{Binding Volume, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" ContentStringFormat="N2" />
             </Slider.ToolTip>
         </Slider>
-        <TextBlock Text="Audio output device:" Margin="10,238,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <TextBlock Text="Audio output device:" Margin="10,238,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Foreground="#FF999999" />
         <ComboBox x:Name="AudioDevicesComboBox" Margin="125,235,20,0" Height="23" VerticalAlignment="Top" SelectedItem="{Binding AudioDevice, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" GotFocus="AudioDevicesComboBox_GotFocus"/>
+        <TextBox x:Name="HorusToken" HorizontalAlignment="Left" Height="23" Margin="10,482,0,0" TextWrapping="NoWrap"  Text="{Binding HorusToken, Mode=TwoWay, Source={x:Static properties:Settings.Default}}" VerticalAlignment="Top" Width="339" Foreground="#FF999999" TextChanged="HorusToken_TextChanged">
+            <TextBox.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF222222"/>
+                    <GradientStop Color="#FF333333" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBox.Background>
+        </TextBox>
+        <TextBlock HorizontalAlignment="Left" Margin="10,460,0,0" TextWrapping="Wrap" Text="Horus-Hunts.net Token" VerticalAlignment="Top" Height="18" Width="122" Foreground="#FF999999"/>
+        <TextBlock x:Name="HorusHuntsToken" TextAlignment="Right" Margin="173,460,33,0" TextWrapping="Wrap" Text="Click Here to Retrieve" VerticalAlignment="Top" Height="18" Foreground="Green" TextDecorations="Underline" MouseDown="HorusHuntsToken_MouseDown"/>
     </Grid>
 </Window>

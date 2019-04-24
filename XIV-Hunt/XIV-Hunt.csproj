@@ -336,6 +336,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Aswang.cs" />
+    <Compile Include="AswangHorus.cs" />
     <Compile Include="ChatMessage.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="FFXIVHunts.cs" />
